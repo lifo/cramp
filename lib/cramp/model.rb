@@ -10,6 +10,13 @@ module Cramp
     autoload :Quoting, "cramp/model/quoting"
     autoload :Engine, "cramp/model/engine"
     autoload :Column, "cramp/model/column"
+
+    extend self
+
+    def init(settings)
+      Arel::Table.engine = Cramp::Model::Engine.new(settings)
+    end
+
   end
 end
 
