@@ -1,3 +1,0 @@
-[submodule "lib/cramp/vendor/arel"]
-	path = lib/cramp/vendor/arel
-	url = git://github.com/rails/arel.git
