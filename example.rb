@@ -22,23 +22,9 @@ EM.run do
       puts "Oops. Found errors : #{user.errors.inspect}"
 
       user.name = 'Lush'
-      user.save
-
-      User.where(User[:name].eq('Lush')).all {|users| puts users.inspect }
+      user.save do
+        User.where(User[:name].eq('Lush')).all {|users| puts users.inspect; EM.stop }
+      end
     end
   end
-
-  # u.name = 'fifo'
-  # 
-  # u.save do
-  #   u.name = 'ha'
-  #   u.save
-  # end
-
-  # x = User.where(User[:name].eq('fifo'))
-  # x.each {|u| puts u.inspect }
-  # x.all {|users| puts users.inspect }
-
-  EM::Timer.new(0.05) { EM.stop }
 end
-
