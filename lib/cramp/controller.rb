@@ -3,8 +3,8 @@ require 'active_support'
 require 'active_support/concern'
 require 'active_support/core_ext/hash/indifferent_access'
 
-$: << File.join(File.dirname(__FILE__), 'vendor/usher/lib')
 require 'usher'
+require 'rack'
 
 module Cramp
   module Controller

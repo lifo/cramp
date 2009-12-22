@@ -24,4 +24,3 @@ class HomeController < Cramp::Controller::Base
   end
 
 end
-

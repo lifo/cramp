@@ -16,11 +16,11 @@ module Cramp
       end
 
       def self.default_status
-        @@default_status || DEFAULT_STATUS
+        defined?(@@default_status) ? @@default_status : DEFAULT_STATUS
       end
 
       def self.default_headers
-        @@default_headers || DEFAULT_HEADERS
+        defined?(@@default_headers) ? @@default_headers : DEFAULT_HEADERS
       end
 
       def initialize(env)
