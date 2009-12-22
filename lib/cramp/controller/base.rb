@@ -23,6 +23,15 @@ module Cramp
         defined?(@@default_headers) ? @@default_headers : DEFAULT_HEADERS
       end
 
+      def self.periodic_timer(method, options)
+        @@periodic_timers ||= []
+        @@periodic_timers << [method, options]
+      end
+
+      def self.periodic_timers
+        defined?(@@periodic_timers) ? @@periodic_timers : []
+      end
+
       def initialize(env)
         @env = env
       end
@@ -64,13 +73,31 @@ module Cramp
         init_async_body
         send_initial_response(self.class.default_status, self.class.default_headers, @body)
 
-        EM.next_tick { start }
+        EM.next_tick { start_periodic_timers }
+        EM.next_tick { start } if respond_to?(:start)
       end
 
       def init_async_body
         @body = Body.new
         @body.callback { on_finish }
         @body.errback { on_finish }
+      end
+
+      def start_periodic_timers
+        @timers = []
+
+        self.class.periodic_timers.each do |method, options|
+          @timers << EventMachine::PeriodicTimer.new(options[:every] || 1) { send(method) }
+        end
+
+        if @timers.any?
+          @body.callback { stop_periodic_timers }
+          @body.errback { stop_periodic_timers }
+        end
+      end
+
+      def stop_periodic_timers
+        @timers.each {|t| t.cancel }
       end
 
       def on_finish
