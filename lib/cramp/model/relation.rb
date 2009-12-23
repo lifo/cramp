@@ -22,7 +22,7 @@ module Cramp
 
       def first(&block)
         @relation.first do |row|
-          object = @klass.instantiate(row)
+          object = row ? @klass.instantiate(row) : nil
           block.call(object)
         end
       end

@@ -1,6 +1,6 @@
 require 'rubygems'
 
-$: << File.join(File.dirname(__FILE__), "lib")
+$: << File.join(File.dirname(__FILE__), "../lib")
 require 'cramp/controller'
 
 class HomeController < Cramp::Controller::Base
@@ -24,3 +24,9 @@ class HomeController < Cramp::Controller::Base
   end
 
 end
+
+routes = Usher::Interface.for(:rack) do
+  add('/(:password)').to(HomeController)
+end
+
+Rack::Handler::Thin.run routes, :Port => 3000

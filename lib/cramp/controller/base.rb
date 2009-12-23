@@ -23,7 +23,7 @@ module Cramp
         defined?(@@default_headers) ? @@default_headers : DEFAULT_HEADERS
       end
 
-      def self.periodic_timer(method, options)
+      def self.periodic_timer(method, options = {})
         @@periodic_timers ||= []
         @@periodic_timers << [method, options]
       end
@@ -34,6 +34,7 @@ module Cramp
 
       def initialize(env)
         @env = env
+        @timers = []
       end
 
       def process
@@ -81,19 +82,18 @@ module Cramp
         @body = Body.new
         @body.callback { on_finish }
         @body.errback { on_finish }
+
+        @body.callback { stop_periodic_timers }
+        @body.errback { stop_periodic_timers }
       end
 
       def start_periodic_timers
-        @timers = []
-
         self.class.periodic_timers.each do |method, options|
           @timers << EventMachine::PeriodicTimer.new(options[:every] || 1) { send(method) }
         end
+      end
 
-        if @timers.any?
-          @body.callback { stop_periodic_timers }
-          @body.errback { stop_periodic_timers }
-        end
+      def start_timer
       end
 
       def stop_periodic_timers
