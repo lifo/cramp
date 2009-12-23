@@ -33,7 +33,7 @@ module Cramp
       end
 
       def self.keep_connection_alive(options = {})
-        options = { :every => 30 }.merge(options)
+        options = { :every => 15 }.merge(options)
         periodic_timer :keep_connection_alive, options
       end
 
