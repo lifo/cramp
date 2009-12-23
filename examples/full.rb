@@ -36,7 +36,7 @@ class UsersController < Cramp::Controller::Base
   end
 
   # Sends a space ( ' ' ) to the client for keeping the connection alive. Default : Every 15 seconds
-  keep_connection_alive :every => 10
+  keep_connection_alive :every => 1
 
   # Polls every 1 second by default
   periodic_timer :poll_user
