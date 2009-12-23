@@ -37,6 +37,14 @@ module Cramp
         periodic_timer :keep_connection_alive, options
       end
 
+      def self.before_start(*methods)
+        @@before_start = methods
+      end
+
+      def self.before_start_callbacks
+        @@before_start || []
+      end
+
       def initialize(env)
         @env = env
         @timers = []
@@ -67,8 +75,12 @@ module Cramp
         EM.next_tick { @body.succeed }
       end
 
-      def before_start
-        continue
+      def before_start(n = 0)
+        if callback = self.class.before_start_callbacks[n]
+          send(callback) { before_start(n+1) }
+        else
+          continue
+        end
       end
 
       def halt(status, headers = self.class.default_headers, halt_body = '')

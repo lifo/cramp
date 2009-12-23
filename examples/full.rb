@@ -15,17 +15,22 @@ class User < Cramp::Model::Base
 end
 
 class UsersController < Cramp::Controller::Base
-  def before_start
+  before_start :verify_id, :find_user
+
+  def verify_id
     if params[:id].nil? || params[:id] !~ /\d+/
       halt 500, {}, "Bad Request"
     else
-      User.where(User[:id].eq(params[:id])).first do |user|
-        if user
-          @user = user
-          continue
-        else
-          halt 404, {}, "User not found"
-        end
+      yield
+    end
+  end
+
+  def find_user
+    User.where(User[:id].eq(params[:id])).first do |user|
+      if @user = user
+        yield
+      else
+        halt 404, {}, "User not found"
       end
     end
   end
