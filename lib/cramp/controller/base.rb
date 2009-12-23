@@ -32,6 +32,11 @@ module Cramp
         defined?(@@periodic_timers) ? @@periodic_timers : []
       end
 
+      def self.keep_connection_alive(options = {})
+        options = { :every => 30 }.merge(options)
+        periodic_timer :keep_connection_alive, options
+      end
+
       def initialize(env)
         @env = env
         @timers = []
@@ -93,14 +98,15 @@ module Cramp
         end
       end
 
-      def start_timer
-      end
-
       def stop_periodic_timers
         @timers.each {|t| t.cancel }
       end
 
       def on_finish
+      end
+
+      def keep_connection_alive
+        render " "
       end
 
     end
