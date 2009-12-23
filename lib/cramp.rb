@@ -5,5 +5,5 @@ require 'active_support/concern'
 require 'active_support/core_ext'
 
 module Cramp
-  VERSION = '0.1'
+  VERSION = '0.2'
 end
