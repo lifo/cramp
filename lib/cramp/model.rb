@@ -1,20 +1,12 @@
-require 'cramp/vendor/evented_mysql'
-require 'eventmachine'
+require 'cramp/model/evented_mysql'
+require 'cramp/model/emysql_ext'
+
 require 'mysqlplus'
 
-$:.unshift File.expand_path(File.join(File.dirname(__FILE__), 'vendor/activesupport/lib'))
-require 'active_support'
-require 'active_support/concern'
-require 'active_support/core_ext/hash/indifferent_access'
-
-$: << File.join(File.dirname(__FILE__), 'vendor/arel/lib')
 require 'arel'
+require 'cramp/model/arel_monkey_patches'
 
-$: << File.join(File.dirname(__FILE__), 'vendor/activemodel/lib')
 require 'active_model'
-
-require 'cramp/model/monkey_patches'
-require 'cramp/model/emysql_ext'
 
 module Cramp
   module Model
