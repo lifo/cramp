@@ -6,24 +6,30 @@ module Cramp
         @klass, @relation = klass, relation
       end
 
-      def each(&block)
+      def each(callback = nil, &block)
+        callback ||= block
+
         @relation.each do |row|
           object = @klass.instantiate(row)
-          block.call(object)
+          callback.call(object)
         end
       end
 
-      def all(&block)
+      def all(callback = nil, &block)
+        callback ||= block
+
         @relation.all do |rows|
           objects = rows.map {|r| @klass.instantiate(r) }
-          block.call(objects)
+          callback.call(objects)
         end
       end
 
-      def first(&block)
+      def first(callback = nil, &block)
+        callback ||= block
+
         @relation.first do |row|
           object = row ? @klass.instantiate(row) : nil
-          block.call(object)
+          callback.call(object)
         end
       end
 

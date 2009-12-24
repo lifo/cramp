@@ -2,6 +2,7 @@ require 'active_support'
 require 'active_support/concern'
 require 'active_support/core_ext/hash/indifferent_access'
 require 'active_support/core_ext/class/inheritable_attributes'
+require 'cramp/core_ext'
 
 require 'usher'
 require 'rack'

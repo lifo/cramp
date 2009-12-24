@@ -45,11 +45,13 @@ class UsersController < Cramp::Controller::Base
   on_finish :stop_benchmark
 
   def poll_user
-    User.where(User[:id].eq(@user.id)).first do |user|
-      if @user.name != user.name
-        render "User's name changed from #{@user.name} to #{user.name}"
-        finish
-      end
+    User.where(User[:id].eq(@user.id)).first _(:on_user_find)
+  end
+
+  def on_user_find(user)
+    if @user.name != user.name
+      render "User's name changed from #{@user.name} to #{user.name}"
+      finish
     end
   end
 
