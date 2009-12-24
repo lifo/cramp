@@ -29,6 +29,7 @@ module Cramp
         send_initial_response(self.class.default_status, self.class.default_headers, @body)
 
         EM.next_tick { start } if respond_to?(:start)
+        EM.next_tick { on_start }
       end
 
       def init_async_body

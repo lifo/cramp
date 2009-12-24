@@ -41,11 +41,8 @@ class UsersController < Cramp::Controller::Base
   # Polls every 1 second by default
   periodic_timer :poll_user
 
-  on_finish :print_time_taken
-
-  def start
-    @time = Time.now
-  end
+  on_start  :start_benchmark
+  on_finish :stop_benchmark
 
   def poll_user
     User.where(User[:id].eq(@user.id)).first do |user|
@@ -56,7 +53,11 @@ class UsersController < Cramp::Controller::Base
     end
   end
 
-  def print_time_taken
+  def start_benchmark
+    @time = Time.now
+  end
+  
+  def stop_benchmark
     puts "It took #{Time.now - @time} seconds"
   end
 end
