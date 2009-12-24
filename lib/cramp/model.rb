@@ -1,3 +1,4 @@
+require 'cramp'
 require 'cramp/model/evented_mysql'
 require 'cramp/model/emysql_ext'
 
