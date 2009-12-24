@@ -1,14 +1,12 @@
 module Cramp
   module Controller
-    module Processing
-
-      extend ActiveSupport::Concern
+    class Abstract
 
       ASYNC_RESPONSE = [-1, {}, []].freeze
       DEFAULT_STATUS = 200
       DEFAULT_HEADERS =  { 'Content-Type' => 'text/html' }.freeze
 
-      module ClassMethods
+      class << self
         def call(env)
           controller = new(env).process
         end
@@ -25,6 +23,14 @@ module Cramp
         def default_headers
           defined?(@default_headers) ? @default_headers : DEFAULT_HEADERS
         end
+
+        def before_start(*methods)
+          @before_start = methods
+        end
+
+        def before_start_callbacks
+          @before_start || []
+        end
       end
 
       def initialize(env)
@@ -32,6 +38,7 @@ module Cramp
       end
 
       def process
+        EM.next_tick { before_start }
         ASYNC_RESPONSE
       end
 
@@ -48,6 +55,17 @@ module Cramp
         @body.errback { on_finish }
       end
 
+      def before_start(n = 0)
+        if callback = self.class.before_start_callbacks[n]
+          EM.next_tick { send(callback) { before_start(n+1) } }
+        else
+          continue
+        end
+      end
+
+      def on_finish
+      end
+
       def finish
         EM.next_tick { @body.succeed }
       end
@@ -58,9 +76,6 @@ module Cramp
 
       def halt(status, headers = self.class.default_headers, halt_body = '')
         send_initial_response(status, headers, halt_body)
-      end
-
-      def on_finish
       end
 
     end

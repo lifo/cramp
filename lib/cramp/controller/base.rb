@@ -1,10 +1,9 @@
 module Cramp
   module Controller
-    class Base
-      include Processing
+    class Base < Abstract
+
       include PeriodicTimer
       include KeepConnectionAlive
-      include BeforeStart
 
       def request
         @request ||= Rack::Request.new(@env)

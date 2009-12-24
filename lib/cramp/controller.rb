@@ -12,7 +12,7 @@ module Cramp
     autoload :Body, "cramp/controller/body"
     autoload :PeriodicTimer, "cramp/controller/periodic_timer"
     autoload :KeepConnectionAlive, "cramp/controller/keep_connection_alive"
-    autoload :Processing, "cramp/controller/processing"
-    autoload :BeforeStart, "cramp/controller/before_start"
+    autoload :Abstract, "cramp/controller/abstract"
+    autoload :Callbacks, "cramp/controller/callbacks"
   end
 end

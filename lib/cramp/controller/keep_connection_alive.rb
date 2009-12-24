@@ -3,6 +3,7 @@ module Cramp
     module KeepConnectionAlive
 
       extend ActiveSupport::Concern
+      include PeriodicTimer
 
       module ClassMethods
         def keep_connection_alive(options = {})
