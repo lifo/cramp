@@ -1,7 +1,7 @@
-$:.unshift File.expand_path(File.join(File.dirname(__FILE__), 'vendor/activesupport/lib'))
 require 'active_support'
 require 'active_support/concern'
 require 'active_support/core_ext/hash/indifferent_access'
+require 'active_support/core_ext/class/inheritable_attributes'
 
 require 'usher'
 require 'rack'

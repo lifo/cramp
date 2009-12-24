@@ -2,9 +2,7 @@ module Cramp
   module Controller
     class Abstract
 
-      ASYNC_RESPONSE = [-1, {}, []].freeze
-      DEFAULT_STATUS = 200
-      DEFAULT_HEADERS =  { 'Content-Type' => 'text/html' }.freeze
+      include Callbacks
 
       class << self
         def call(env)
@@ -12,24 +10,8 @@ module Cramp
         end
 
         def set_default_response(status = 200, headers = DEFAULT_HEADERS)
-          @default_status = 200
-          @default_headers = headers
-        end
-
-        def default_status
-          defined?(@default_status) ? @default_status : DEFAULT_STATUS
-        end
-
-        def default_headers
-          defined?(@default_headers) ? @default_headers : DEFAULT_HEADERS
-        end
-
-        def before_start(*methods)
-          @before_start = methods
-        end
-
-        def before_start_callbacks
-          @before_start || []
+          self.default_status = 200
+          self.default_headers = headers
         end
       end
 
@@ -53,17 +35,6 @@ module Cramp
         @body = Body.new
         @body.callback { on_finish }
         @body.errback { on_finish }
-      end
-
-      def before_start(n = 0)
-        if callback = self.class.before_start_callbacks[n]
-          EM.next_tick { send(callback) { before_start(n+1) } }
-        else
-          continue
-        end
-      end
-
-      def on_finish
       end
 
       def finish

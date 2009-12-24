@@ -4,14 +4,14 @@ module Cramp
 
       extend ActiveSupport::Concern
 
+      included do
+        class_inheritable_accessor :periodic_timers
+        self.periodic_timers ||= []
+      end
+
       module ClassMethods
         def periodic_timer(method, options = {})
-          @periodic_timers ||= []
-          @periodic_timers << [method, options]
-        end
-
-        def periodic_timers
-          defined?(@periodic_timers) ? @periodic_timers : []
+          self.periodic_timers << [method, options]
         end
       end
 

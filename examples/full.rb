@@ -41,6 +41,12 @@ class UsersController < Cramp::Controller::Base
   # Polls every 1 second by default
   periodic_timer :poll_user
 
+  on_finish :print_time_taken
+
+  def start
+    @time = Time.now
+  end
+
   def poll_user
     User.where(User[:id].eq(@user.id)).first do |user|
       if @user.name != user.name
@@ -50,6 +56,9 @@ class UsersController < Cramp::Controller::Base
     end
   end
 
+  def print_time_taken
+    puts "It took #{Time.now - @time} seconds"
+  end
 end
 
 routes = Usher::Interface.for(:rack) do
