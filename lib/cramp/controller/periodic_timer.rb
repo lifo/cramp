@@ -5,7 +5,7 @@ module Cramp
       extend ActiveSupport::Concern
 
       included do
-        class_inheritable_accessor :periodic_timers
+        class_inheritable_accessor :periodic_timers, :instance_reader => false
         self.periodic_timers ||= []
       end
 
@@ -27,8 +27,11 @@ module Cramp
 
       def init_async_body
         super
-        @body.callback { stop_periodic_timers }
-        @body.errback { stop_periodic_timers }
+
+        if self.class.periodic_timers.any?
+          @body.callback { stop_periodic_timers }
+          @body.errback { stop_periodic_timers }
+        end
       end
 
       private

@@ -34,8 +34,11 @@ module Cramp
 
       def init_async_body
         @body = Body.new
-        @body.callback { on_finish }
-        @body.errback { on_finish }
+
+        if self.class.on_finish_callbacks.any?
+          @body.callback { on_finish }
+          @body.errback { on_finish }
+        end
       end
 
       def finish
