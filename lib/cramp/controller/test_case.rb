@@ -36,8 +36,8 @@ module Cramp
           chunks << body_chunk
 
           if chunks.count >= count
+            callback.call(chunks) if callback
             EM.stop
-            callback.call(chunks)
           end
         end
       end
