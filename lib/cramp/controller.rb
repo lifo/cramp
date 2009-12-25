@@ -10,7 +10,6 @@ module Cramp
     autoload :KeepConnectionAlive, "cramp/controller/keep_connection_alive"
     autoload :Abstract, "cramp/controller/abstract"
     autoload :Callbacks, "cramp/controller/callbacks"
-
     autoload :TestCase, "cramp/controller/test_case"
   end
 end

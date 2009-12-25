@@ -3,8 +3,8 @@ require 'active_support/test_case'
 
 module Cramp
   module Controller
+    class TestCase < ::ActiveSupport::TestCase
 
-    class TestCase < ActiveSupport::TestCase
       setup :create_request
 
       def create_request

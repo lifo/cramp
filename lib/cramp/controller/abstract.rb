@@ -42,7 +42,7 @@ module Cramp
       end
 
       def finish
-        EM.next_tick { @body.succeed }
+        @body.succeed
       end
 
       def send_initial_response(response_status, response_headers, response_body)
