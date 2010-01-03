@@ -1,6 +1,6 @@
 module Cramp
   module Controller
-    class Base < Abstract
+    class Action < Abstract
 
       include PeriodicTimer
       include KeepConnectionAlive

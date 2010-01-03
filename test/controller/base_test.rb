@@ -2,7 +2,7 @@ require 'test_helper'
 
 class BaseTest < Cramp::Controller::TestCase
 
-  class WelcomeController < Cramp::Controller::Base
+  class WelcomeController < Cramp::Controller::Action
     def start
       render "Hello World"
       finish

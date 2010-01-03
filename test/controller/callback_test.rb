@@ -2,7 +2,7 @@ require 'test_helper'
 
 class CallbackTest < Cramp::Controller::TestCase
 
-  class CallbackController < Cramp::Controller::Base
+  class CallbackController < Cramp::Controller::Action
     cattr_accessor :logs
     self.logs = []
 

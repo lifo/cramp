@@ -2,7 +2,7 @@ require 'test_helper'
 
 class KeepAliveTest < Cramp::Controller::TestCase
 
-  class KeepAliveController < Cramp::Controller::Base
+  class KeepAliveController < Cramp::Controller::Action
     keep_connection_alive :every => 0
   end
 

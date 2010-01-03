@@ -4,7 +4,7 @@ require 'rack'
 
 module Cramp
   module Controller
-    autoload :Base, "cramp/controller/base"
+    autoload :Action, "cramp/controller/action"
     autoload :Body, "cramp/controller/body"
     autoload :PeriodicTimer, "cramp/controller/periodic_timer"
     autoload :KeepConnectionAlive, "cramp/controller/keep_connection_alive"
