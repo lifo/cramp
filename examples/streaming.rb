@@ -3,7 +3,7 @@ require 'rubygems'
 $: << File.join(File.dirname(__FILE__), "../lib")
 require 'cramp/controller'
 
-class StreamController < Cramp::Controller::Base
+class StreamController < Cramp::Controller::Action
   periodic_timer :send_data, :every => 1
   periodic_timer :check_limit, :every => 2
 

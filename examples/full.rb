@@ -14,7 +14,7 @@ class User < Cramp::Model::Base
   validates_presence_of :name
 end
 
-class UsersController < Cramp::Controller::Base
+class UsersController < Cramp::Controller::Action
   before_start :verify_id, :find_user
 
   def verify_id
