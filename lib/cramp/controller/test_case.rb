@@ -30,14 +30,16 @@ module Cramp
         callback = options.delete(:callback) || block
         count = options.delete(:count) || 1
 
+        stopping = false
         chunks = []
 
         get_body(path, options, headers) do |body_chunk|
-          chunks << body_chunk
+          chunks << body_chunk unless stopping
 
           if chunks.count >= count
+            stopping = true
             callback.call(chunks) if callback
-            EM.stop
+            EM.next_tick { EM.stop }
           end
         end
       end

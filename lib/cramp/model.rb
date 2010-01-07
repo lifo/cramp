@@ -26,6 +26,14 @@ module Cramp
       Arel::Table.engine = Cramp::Model::Engine.new(settings)
     end
 
+    def self.select(query, callback = nil, &block)
+      callback ||= block
+
+      EventedMysql.select(query) do |rows|
+        callback.arity == 1 ? callback.call(rows) : callback.call if callback
+      end
+    end
+
   end
 end
 

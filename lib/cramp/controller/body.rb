@@ -1,13 +1,15 @@
-#  Copyright 2008 James Tucker <raggi@rubyforge.org>.
+# Copyright 2008 James Tucker <raggi@rubyforge.org>.
 
 module Cramp
   module Controller
     class Body
-
       include EventMachine::Deferrable
 
       def initialize
         @queue = []
+
+        # Make sure to flush out the queue before closing the connection
+        callback { flush }
       end
 
       def call(body)
@@ -24,14 +26,21 @@ module Cramp
         @deferred_status != :unknown
       end
 
-      private
+      def flush
+        return unless @body_callback
+
+        until @queue.empty?
+          @queue.shift.each {|chunk| @body_callback.call(chunk) }
+        end
+      end
 
       def schedule_dequeue
         return unless @body_callback
+
         EventMachine.next_tick do
           next unless body = @queue.shift
 
-          body.each{|chunk| @body_callback.call(chunk) }
+          body.each {|chunk| @body_callback.call(chunk) }
           schedule_dequeue unless @queue.empty?
         end
       end

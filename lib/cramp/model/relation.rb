@@ -33,16 +33,12 @@ module Cramp
         end
       end
 
-      def select(selects)
-        Relation.new(@klass, @relation.project(selects))
+      def where(*conditions)
+        Relation.new(@klass, @relation.where(*conditions))
       end
 
-      def where(conditions)
-        Relation.new(@klass, @relation.where(conditions))
-      end
-
-      def select(selects)
-        Relation.new(@klass, @relation.project(selects))
+      def select(*selects)
+        Relation.new(@klass, @relation.project(*selects))
       end
 
       def group(groups)

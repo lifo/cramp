@@ -38,17 +38,21 @@ module Cramp
         @new_record
       end
 
-      def save(&block)
+      def save(callback = nil, &block)
+        callback ||= block
+
         if valid?
-          new_record? ? create_record(&block) : update_record(&block)
+          new_record? ? create_record(callback) : update_record(callback)
         else
-          block.arity == 1 ? block.call(Status.new(self, false)) : block.call if block
+          callback.arity == 1 ? callback.call(Status.new(self, false)) : callback.call if callback
         end
       end
 
       private
 
-      def create_record(&block)
+      def create_record(callback = nil, &block)
+        callback ||= block
+
         self.class.arel_table.insert(arel_attributes(true)) do |new_id|
           if new_id.present?
             self.id = new_id
@@ -58,15 +62,17 @@ module Cramp
             saved = false
           end
 
-          block.arity == 1 ? block.call(Status.new(self, saved)) : block.call if block
+          callback.arity == 1 ? callback.call(Status.new(self, saved)) : callback.call if callback
         end
       end
 
-      def update_record(&block)
+      def update_record(callback = nil, &block)
+        callback ||= block
+
         relation = self.class.arel_table.where(self.class[self.class.primary_key].eq(send(self.class.primary_key)))
 
         relation.update(arel_attributes) do |updated_rows|
-          block.arity == 1 ? block.call(updated_rows) : block.call if block
+          callback.arity == 1 ? callback.call(updated_rows) : callback.call if callback
         end
       end
 

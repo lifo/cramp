@@ -2,17 +2,7 @@ module Cramp
   module Model
     module Finders
 
-      def all
-        Relation.new(self, arel_table)
-      end
-
-      def first(&block)
-        Relation.new(self, arel_table).limit(1).each(&block)
-      end
-
-      def where(relation)
-        Relation.new(self, arel_table.where(relation))
-      end
+      delegate :all, :first, :each, :where, :select, :group, :order, :limit, :offset, :to => :relation
 
       def [](attribute)
         arel_table[attribute]
@@ -20,6 +10,10 @@ module Cramp
 
       def arel_table
         @arel_table ||= Arel::Table.new(table_name)
+      end
+
+      def relation
+        Relation.new(self, arel_table)
       end
 
       private
