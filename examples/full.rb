@@ -1,5 +1,4 @@
 require File.join(File.dirname(__FILE__), "../vendor/gems/environment")
-
 $: << File.join(File.dirname(__FILE__), "../lib")
 
 require 'cramp/controller'

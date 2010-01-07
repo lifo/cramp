@@ -1,12 +1,9 @@
-require 'rubygems'
-
+require File.join(File.dirname(__FILE__), "../vendor/gems/environment")
 $: << File.join(File.dirname(__FILE__), "../lib")
+
 require 'cramp/controller'
 
 class HomeController < Cramp::Controller::Action
-  # Optional - These are the default headers
-  set_default_response 200, 'Content-Type' => 'text/html'
-
   def before_start
     if params[:password] != 'foo'
       halt 401, {}, "Bad Password"
