@@ -4,6 +4,8 @@ module Cramp
 
       include Callbacks
 
+      ASYNC_RESPONSE = [-1, {}, []].freeze
+
       class << self
         def call(env)
           controller = new(env).process
