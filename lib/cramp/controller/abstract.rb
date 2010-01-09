@@ -56,6 +56,14 @@ module Cramp
         send_initial_response(status, headers, halt_body)
       end
 
+      def request
+        @request ||= Rack::Request.new(@env)
+      end
+
+      def params
+        @params ||= @env['usher.params']
+      end
+
     end
   end
 end
