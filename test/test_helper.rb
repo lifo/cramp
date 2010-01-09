@@ -7,3 +7,4 @@ require 'cramp/controller'
 require 'cramp/model'
 
 require 'test/unit'
+require 'usher'
