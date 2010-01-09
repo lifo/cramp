@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
   s.name = 'cramp'
-  s.version = '0.7'
+  s.version = '0.8'
   s.summary = "Async ORM and controller layer."
   s.description = <<-EOF
     Cramp provides ORM and controller layers for developing asynchronous web applications.
