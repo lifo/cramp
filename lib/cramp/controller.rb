@@ -1,5 +1,4 @@
 require 'cramp'
-require 'usher'
 require 'rack'
 
 module Cramp
