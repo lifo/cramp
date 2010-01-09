@@ -1,8 +1,6 @@
 require 'thin'
 
 class Thin::Connection
-  WEBSOCKET_RECEIVE_CALLBACK = 'websocket.receive_callback'.freeze
-
   # Called when data is received from the client.
   def receive_data(data)
     trace { data }
@@ -29,22 +27,7 @@ class Thin::Connection
 end
 
 class Thin::Request
-  def websocket?
-    @env['HTTP_CONNECTION'] == 'Upgrade' && @env['HTTP_UPGRADE'] == 'WebSocket'
-  end
-
-  # upgrade headers for websocket connections
-  def websocket_upgrade_data
-    location  = "ws://#{@env['HTTP_HOST']}#{@env['REQUEST_PATH']}"
-
-    upgrade =  "HTTP/1.1 101 Web Socket Protocol Handshake\r\n"
-    upgrade << "Upgrade: WebSocket\r\n"
-    upgrade << "Connection: Upgrade\r\n"
-    upgrade << "WebSocket-Origin: #{@env['HTTP_ORIGIN']}\r\n"
-    upgrade << "WebSocket-Location: #{location}\r\n\r\n"
-
-    upgrade
-  end
+  include Cramp::Controller::WebsocketExtension
 end
 
 class Thin::Response
