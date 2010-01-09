@@ -23,7 +23,7 @@ class WebSocketTest < Cramp::Controller::TestCase
 
     EM.run do
       app.call(env)
-      env['websocket.receive_calback'].call("\000Hello Websock!\377")
+      env['websocket.receive_callback'].call("\000Hello Websock!\377")
       EM.stop
     end
 

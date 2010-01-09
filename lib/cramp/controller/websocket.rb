@@ -14,7 +14,7 @@ module Cramp
       end
 
       def process
-        @env['websocket.receive_calback'] = method(:_on_data_receive)
+        @env['websocket.receive_callback'] = method(:_on_data_receive)
         super
       end
 
