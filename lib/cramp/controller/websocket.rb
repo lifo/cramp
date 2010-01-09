@@ -8,6 +8,11 @@ module Cramp
       self.on_data_callbacks = []
 
       class << self
+        def backend=(backend)
+          raise "Websocket backend #{backend} is unknown" unless [:thin].include?(backend.to_sym)
+          require "cramp/controller/websocket/#{backend}_backend.rb"
+        end
+
         def on_data(*methods)
           self.on_data_callbacks += methods
         end

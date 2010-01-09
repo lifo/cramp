@@ -1,10 +1,9 @@
 require File.join(File.dirname(__FILE__), "../vendor/gems/environment")
 $: << File.join(File.dirname(__FILE__), "../lib")
 
-# $: << "/Users/lifo/Rails/thin/lib"
-require 'thin'
-
 require 'cramp/controller'
+
+Cramp::Controller::Websocket.backend = :thin
 
 class WelcomeController < Cramp::Controller::Websocket
   periodic_timer :send_hello_world, :every => 2
