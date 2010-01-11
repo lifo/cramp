@@ -1,5 +1,7 @@
 require 'thin'
 
+silence_warnings { Thin::Server::DEFAULT_TIMEOUT = 0 }
+
 class Thin::Connection
   # Called when data is received from the client.
   def receive_data(data)
@@ -12,6 +14,7 @@ class Thin::Connection
     else
       if @request.parse(data)
         if @request.websocket?
+          @response.persistent!
           @response.websocket_upgrade_data = @request.websocket_upgrade_data
           @serving = :websocket
         end
