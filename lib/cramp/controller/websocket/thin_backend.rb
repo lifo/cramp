@@ -7,7 +7,7 @@ class Thin::Connection
 
     case @serving
     when :websocket
-      callback = @request.env[WEBSOCKET_RECEIVE_CALLBACK]
+      callback = @request.env[Thin::Request::WEBSOCKET_RECEIVE_CALLBACK]
       callback.call(data) if callback
     else
       if @request.parse(data)
@@ -19,7 +19,7 @@ class Thin::Connection
         process
       end
     end
-  rescue InvalidRequest => e
+  rescue Thin::InvalidRequest => e
     log "!! Invalid request"
     log_error e
     close_connection
