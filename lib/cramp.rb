@@ -8,5 +8,5 @@ require 'active_support/core_ext/module/aliasing'
 require 'active_support/concern'
 
 module Cramp
-  VERSION = '0.8'
+  VERSION = '0.9'
 end
