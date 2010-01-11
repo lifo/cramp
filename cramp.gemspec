@@ -17,7 +17,6 @@ Gem::Specification.new do |s|
   s.add_dependency('rack',          '~> 1.1.0')
   s.add_dependency('mysqlplus',     '~> 0.1.1')
   s.add_dependency('eventmachine',  '~> 0.12.10')
-  s.add_dependency('thin',          '~> 1.2.5')
 
   s.files = Dir['README', 'MIT-LICENSE', 'lib/**/*']
   s.has_rdoc = false
