@@ -9,5 +9,5 @@ require 'active_support/core_ext/kernel/reporting'
 require 'active_support/concern'
 
 module Cramp
-  VERSION = '0.9'
+  VERSION = '0.10'
 end
