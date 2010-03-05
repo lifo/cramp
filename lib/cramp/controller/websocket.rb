@@ -21,8 +21,10 @@ module Cramp
     end
 
     class Websocket < Abstract
-
       include PeriodicTimer
+
+      # TODO : Websockets shouldn't need this in an ideal world
+      include KeepConnectionAlive
 
       class_inheritable_accessor :on_data_callbacks, :instance_reader => false
       self.on_data_callbacks = []
