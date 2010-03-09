@@ -21,6 +21,7 @@ module Cramp
     autoload :Attribute, "cramp/model/attribute"
     autoload :AttributeMethods, "cramp/model/attribute_methods"
     autoload :Status, "cramp/model/status"
+    autoload :Callbacks, "cramp/model/callbacks"
 
     def self.init(settings)
       Arel::Table.engine = Cramp::Model::Engine.new(settings)

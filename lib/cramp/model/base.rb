@@ -5,6 +5,7 @@ module Cramp
       extend Finders
       include AttributeMethods
       include ActiveModel::Validations
+      include Callbacks
 
       class << self
         def columns
@@ -62,7 +63,9 @@ module Cramp
             saved = false
           end
 
-          callback.arity == 1 ? callback.call(Status.new(self, saved)) : callback.call if callback
+          status = Status.new(self, saved)
+          after_save status
+          callback.arity == 1 ? callback.call(status) : callback.call if callback
         end
       end
 
@@ -72,8 +75,13 @@ module Cramp
         relation = self.class.arel_table.where(self.class[self.class.primary_key].eq(send(self.class.primary_key)))
 
         relation.update(arel_attributes) do |updated_rows|
+          after_save updated_rows
           callback.arity == 1 ? callback.call(updated_rows) : callback.call if callback
         end
+      end
+
+      def after_save(status)
+        after_save_callbacks status
       end
 
       def arel_attributes(exclude_primary_key = true, attribute_names = @attributes.keys)
