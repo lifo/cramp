@@ -5,6 +5,7 @@ module Cramp
       extend Finders
       include AttributeMethods
       include ActiveModel::Validations
+      include ActiveModel::Dirty
       include Callbacks
 
       class << self
@@ -82,6 +83,11 @@ module Cramp
       end
 
       def after_save(status)
+        if status.success?
+          previously_changed_attributes = changes
+          changed_attributes.clear
+        end
+        
         after_save_callbacks status
       end
 

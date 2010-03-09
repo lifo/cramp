@@ -42,7 +42,10 @@ module Cramp
         if ma = self.class.model_attributes[name.to_sym]
           value = ma.check_value!(value)
         end
-        @attributes[name] = value
+        if(@attributes[name] != value)
+          send "#{name}_will_change!".to_sym
+          @attributes[name] = value
+        end
       end
 
       def read_attribute(name)
