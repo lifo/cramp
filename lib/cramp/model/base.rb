@@ -75,8 +75,9 @@ module Cramp
         relation = self.class.arel_table.where(self.class[self.class.primary_key].eq(send(self.class.primary_key)))
 
         relation.update(arel_attributes) do |updated_rows|
-          after_save updated_rows
-          callback.arity == 1 ? callback.call(updated_rows) : callback.call if callback
+          status = Status.new(self, true)
+          after_save status
+          callback.arity == 1 ? callback.call(status) : callback.call if callback
         end
       end
 
