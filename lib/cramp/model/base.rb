@@ -84,7 +84,7 @@ module Cramp
 
       def after_save(status)
         if status.success?
-          previously_changed_attributes = changes
+          @previously_changed = changes
           changed_attributes.clear
         end
         
