@@ -19,7 +19,7 @@ module Cramp
       private
 
       def table_name
-        @table_name || self.to_s.pluralize
+        @table_name || self.to_s.demodulize.underscore.pluralize
       end
 
     end
