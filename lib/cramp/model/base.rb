@@ -55,6 +55,7 @@ module Cramp
         
         relation.delete do
           status = Status.new(self, true)
+          after_destroy_callbacks status
           callback.arity == 1 ? callback.call(status) : callback.call if callback
         end
       end
