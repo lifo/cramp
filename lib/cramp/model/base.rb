@@ -53,7 +53,6 @@ module Cramp
       def destroy(callback = nil, &block)
         callback ||= block
         
-        relation = self.class.arel_table.where(self.class[self.class.primary_key].eq(send(self.class.primary_key)))
         relation.delete do
           status = Status.new(self, true)
           callback.arity == 1 ? callback.call(status) : callback.call if callback
@@ -83,13 +82,15 @@ module Cramp
       def update_record(callback = nil, &block)
         callback ||= block
 
-        relation = self.class.arel_table.where(self.class[self.class.primary_key].eq(send(self.class.primary_key)))
-
         relation.update(arel_attributes) do |updated_rows|
           status = Status.new(self, true)
           after_save status
           callback.arity == 1 ? callback.call(status) : callback.call if callback
         end
+      end
+
+      def relation
+        self.class.arel_table.where(self.class[self.class.primary_key].eq(send(self.class.primary_key)))
       end
 
       def after_save(status)
