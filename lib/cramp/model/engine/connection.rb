@@ -10,7 +10,7 @@ module Cramp
           EventedMysql.execute_now sql
         end
         
-        def create(sql, &block)
+        def insert(sql, &block)
           EventedMysql.insert sql, block
         end
         
