@@ -6,7 +6,6 @@ module Cramp
       def initialize(settings)
         @settings = settings
         @quoted_column_names, @quoted_table_names = {}, {}
-
         EventedMysql.settings.update(settings)
       end
 
@@ -27,7 +26,22 @@ module Cramp
       end
 
       def adapter_name
-        "Cramp MySQL Async Adapter"
+        "mysql"
+      end
+      
+      def connection
+        # Arel apparently uses this method to check whether the engine is connected or not
+        true
+      end
+      
+      def tables
+        sql = "SHOW TABLES"
+        tables = []
+        result = EventedMysql.execute_now(sql)
+
+        result.each { |field| tables << field[0] }
+        result.free
+        tables
       end
 
       def columns(table_name, name = nil)

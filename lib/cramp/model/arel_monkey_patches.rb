@@ -17,7 +17,7 @@ class Arel::Session
 
 end
 
-class Arel::Relation
+module Arel::Relation
   def call(&block)
     engine.read(self, &block)
   end

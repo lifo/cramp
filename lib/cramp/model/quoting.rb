@@ -79,16 +79,6 @@ module Cramp
         s.gsub(/\\/, '\&\&').gsub(/'/, "''") # ' (for ruby-mode)
       end
 
-      # Quotes the column name. Defaults to no quoting.
-      def quote_column_name(column_name)
-        column_name
-      end
-
-      # Quotes the table name. Defaults to column name quoting.
-      def quote_table_name(table_name)
-        quote_column_name(table_name)
-      end
-
       def quoted_true
         "'t'"
       end
