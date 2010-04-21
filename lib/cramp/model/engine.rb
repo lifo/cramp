@@ -11,19 +11,27 @@ module Cramp
       end
 
       def create(relation, &block)
-        EventedMysql.insert(relation.to_sql) {|rows| yield(rows) if block_given? }
+        query = relation.to_sql
+        log_query(query)
+        EventedMysql.insert(query) {|rows| yield(rows) if block_given? }
       end
 
       def read(relation, &block)
-        EventedMysql.select(relation.to_sql) {|rows| yield(rows) }
+        query = relation.to_sql
+        log_query(query)
+        EventedMysql.select(query) {|rows| yield(rows) }
       end
 
       def update(relation)
-        EventedMysql.update(relation.to_sql) {|rows| yield(rows) if block_given? }
+        query = relation.to_sql
+        log_query(query)
+        EventedMysql.update(query) {|rows| yield(rows) if block_given? }
       end
 
       def delete(relation)
-        EventedMysql.delete(relation.to_sql) {|rows| yield(rows) if block_given? }
+        query = relation.to_sql
+        log_query(query)
+        EventedMysql.delete(query) {|rows| yield(rows) if block_given? }
       end
 
       def adapter_name
@@ -40,6 +48,11 @@ module Cramp
         columns
       end
 
+      protected
+
+      def log_query(sql)
+        Cramp.logger.info("[QUERY] #{sql}") if Cramp.logger
+      end
     end
   end
 end
