@@ -61,7 +61,7 @@ module Cramp
       end
 
       def params
-        @params ||= @env['usher.params']
+        @params ||= request.params.update(@env['usher.params']).symbolize_keys
       end
 
     end
