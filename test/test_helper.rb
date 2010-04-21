@@ -1,9 +1,9 @@
-require File.join(File.dirname(__FILE__), "../vendor/gems/environment")
+require "rubygems"
+require "bundler"
 
-cramp_path = File.join(File.dirname(__FILE__), "../lib")
-$:.unshift(cramp_path) unless $:.include?(cramp_path)
+Bundler.setup
+Bundler.require :default, :test
 
 require 'cramp/controller'
-
 require 'test/unit'
 require 'usher'

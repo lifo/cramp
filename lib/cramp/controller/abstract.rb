@@ -1,3 +1,5 @@
+require 'active_support/core_ext/hash/keys'
+
 module Cramp
   module Controller
     class Abstract
