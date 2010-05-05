@@ -1,3 +1,5 @@
+require 'active_support/core_ext/module/attribute_accessors'
+
 module Cramp
   module Model
     class Engine
@@ -11,18 +13,26 @@ module Cramp
       end
 
       def create(relation, &block)
-        @connection.insert(relation.to_sql) {|rows| yield(rows) if block_given? }
+        query = relation.to_sql
+        log_query(query)
+        @connection.insert(query) {|rows| yield(rows) if block_given? }
       end
 
       def read(relation, &block)
-        @connection.select(relation.to_sql) {|rows| yield(rows) }
+        query = relation.to_sql
+        log_query(query)
+        @connection.select(query) {|rows| yield(rows) }
       end
 
       def update(relation)
-        @connection.update(relation.to_sql) {|rows| yield(rows) if block_given? }
+        query = relation.to_sql
+        log_query(query)
+        @connection.update(query) {|rows| yield(rows) if block_given? }
       end
 
       def delete(relation)
+        query = relation.to_sql
+        log_query(query)
         @connection.delete(relation.to_sql) {|rows| yield(rows) if block_given? }
       end
 
@@ -55,6 +65,11 @@ module Cramp
         columns
       end
 
+      protected
+
+      def log_query(sql)
+        Cramp.logger.info("[QUERY] #{sql}") if Cramp.logger
+      end
     end
   end
 end

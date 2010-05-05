@@ -1,1 +1,2 @@
-vendor/*
+.bundle/*
+test/tests.log

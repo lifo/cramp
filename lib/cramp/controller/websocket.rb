@@ -50,13 +50,14 @@ module Cramp
       end
 
       def _on_data_receive(data)
-        data = data.slice(/\000([^\377]*)\377/).gsub(/^\x00|\xff$/, '')
-
+        data = data.split(/\000([^\377]*)\377/).select{|d| !d.empty? }.collect{|d| d.gsub(/^\x00|\xff$/, '') }
         self.class.on_data_callbacks.each do |callback|
-          EM.next_tick { send(callback, data) }
+          data.each do |message|
+            EM.next_tick { send(callback, message) }
+          end
         end
       end
-
+      
     end
   end
 end
