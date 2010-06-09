@@ -11,9 +11,9 @@ Gem::Specification.new do |s|
   s.email = "pratiknaik@gmail.com"
   s.homepage = "http://m.onkey.org"
 
-  s.add_dependency('activesupport', '~> 3.0.0.beta3')
-  s.add_dependency('activemodel',   '~> 3.0.0.beta3')
-  s.add_dependency('arel',          '= 0.3.3')
+  s.add_dependency('activesupport', '~> 3.0.0.beta4')
+  s.add_dependency('activemodel',   '~> 3.0.0.beta4')
+  s.add_dependency('arel',          '= 0.4.0')
   s.add_dependency('rack',          '~> 1.1.0')
   s.add_dependency('mysqlplus',     '~> 0.1.1')
   s.add_dependency('eventmachine',  '~> 0.12.10')
