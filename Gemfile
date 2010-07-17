@@ -9,3 +9,9 @@ gem 'eventmachine', '~> 0.12.10'
 group :test do
   gem 'usher'
 end
+
+group :example do
+  gem 'usher'
+  gem 'tramp', '~> 0.1'
+  gem 'thin', '~> 1.2.7'
+end
