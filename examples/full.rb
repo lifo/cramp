@@ -3,7 +3,7 @@ require "bundler"
 
 Bundler.setup(:default, :example)
 
-require 'cramp/controller'
+require 'cramp'
 require 'tramp'
 require 'usher'
 require 'thin'
@@ -17,7 +17,7 @@ class User < Tramp::Base
   validates_presence_of :name
 end
 
-class UsersController < Cramp::Controller::Action
+class UsersController < Cramp::Action
   before_start :verify_id, :find_user
 
   def verify_id

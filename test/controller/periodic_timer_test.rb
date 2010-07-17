@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class PeiodicTimerTest < Cramp::Controller::TestCase
+class PeiodicTimerTest < Cramp::TestCase
 
-  class SendDataController < Cramp::Controller::Action
+  class SendDataController < Cramp::Action
     periodic_timer :send_data, :every => 0
 
     def send_data
@@ -10,7 +10,7 @@ class PeiodicTimerTest < Cramp::Controller::TestCase
     end
   end
 
-  class FinishingTimerController < Cramp::Controller::Action
+  class FinishingTimerController < Cramp::Action
     periodic_timer :finish_soon, :every => 0
 
     def finish_soon

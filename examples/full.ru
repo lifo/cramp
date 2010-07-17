@@ -1,7 +1,7 @@
 require File.join(File.dirname(__FILE__), "../vendor/gems/environment")
 $: << File.join(File.dirname(__FILE__), "../lib")
 
-require 'cramp/controller'
+require 'cramp'
 require 'cramp/model'
 
 Cramp::Model.init(:username => 'root', :database => 'arel_development')
@@ -13,7 +13,7 @@ class User < Cramp::Model::Base
   validates_presence_of :name
 end
 
-class UsersController < Cramp::Controller::Action
+class UsersController < Cramp::Action
   before_start :verify_id, :find_user
 
   def verify_id

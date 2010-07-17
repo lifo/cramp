@@ -2,11 +2,11 @@ require "rubygems"
 require "bundler"
 Bundler.setup(:default, :example)
 
-require 'cramp/controller'
+require 'cramp'
 require 'usher'
 require 'thin'
 
-class HomeController < Cramp::Controller::Action
+class HomeController < Cramp::Action
   def before_start
     if params[:password] != 'foo'
       halt 401, {}, "Bad Password"

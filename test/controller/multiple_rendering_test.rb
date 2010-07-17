@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class MultipleRenderingTest < Cramp::Controller::TestCase
+class MultipleRenderingTest < Cramp::TestCase
 
-  class MultipleController < Cramp::Controller::Action
+  class MultipleController < Cramp::Action
     def start
       render "Camera"
       render "Obscura"

@@ -30,7 +30,7 @@ class Thin::Connection
 end
 
 class Thin::Request
-  include Cramp::Controller::WebsocketExtension
+  include Cramp::WebsocketExtension
 end
 
 class Thin::Response

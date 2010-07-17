@@ -2,11 +2,11 @@ require "rubygems"
 require "bundler"
 Bundler.setup(:default, :example)
 
-require 'cramp/controller'
+require 'cramp'
 
-Cramp::Controller::Websocket.backend = :rainbows
+Cramp::Websocket.backend = :rainbows
 
-class WelcomeController < Cramp::Controller::Websocket
+class WelcomeController < Cramp::Websocket
   periodic_timer :send_hello_world, :every => 2
   on_data :received_data
 

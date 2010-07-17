@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class BaseTest < Cramp::Controller::TestCase
+class BaseTest < Cramp::TestCase
 
-  class WelcomeController < Cramp::Controller::Action
+  class WelcomeController < Cramp::Action
     def start
       render "Hello World"
       finish
@@ -17,7 +17,7 @@ class BaseTest < Cramp::Controller::TestCase
     get '/' do |status, headers, body|
       assert_equal 200, status
       assert_equal "text/html", headers["Content-Type"]
-      assert_kind_of Cramp::Controller::Body, body
+      assert_kind_of Cramp::Body, body
 
       stop
     end
@@ -32,9 +32,9 @@ class BaseTest < Cramp::Controller::TestCase
   end
 end
 
-class CustomHeadersTest < Cramp::Controller::TestCase
+class CustomHeadersTest < Cramp::TestCase
 
-  class CustomHeadersController < Cramp::Controller::Action
+  class CustomHeadersController < Cramp::Action
     def respond_with
       [201, {'Content-Type' => 'application/json'}]
     end
@@ -53,7 +53,7 @@ class CustomHeadersTest < Cramp::Controller::TestCase
     get '/' do |status, headers, body|
       assert_equal 201, status
       assert_equal "application/json", headers["Content-Type"]
-      assert_kind_of Cramp::Controller::Body, body
+      assert_kind_of Cramp::Body, body
 
       stop
     end

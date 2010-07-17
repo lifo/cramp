@@ -2,10 +2,10 @@ require "rubygems"
 require "bundler"
 Bundler.setup(:default, :example)
 
-require 'cramp/controller'
+require 'cramp'
 require 'thin'
 
-class WelcomeController < Cramp::Controller::Action
+class WelcomeController < Cramp::Action
   def start
     render "Hello World"
     finish
