@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency('activesupport', '~> 3.0.0.beta4')
   s.add_dependency('activemodel',   '~> 3.0.0.beta4')
-  s.add_dependency('arel',          '= 0.4.0')
+  s.add_dependency('arel',          '~> 0.4.0')
   s.add_dependency('rack',          '~> 1.1.0')
   s.add_dependency('mysqlplus',     '~> 0.1.1')
   s.add_dependency('eventmachine',  '~> 0.12.10')
