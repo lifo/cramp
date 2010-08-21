@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class WebSocketTest < Cramp::Controller::TestCase
+class WebSocketTest < Cramp::TestCase
 
-  class WebSocketAction < Cramp::Controller::Websocket
+  class WebSocketAction < Cramp::Websocket
     cattr_accessor :logs
     self.logs = []
 

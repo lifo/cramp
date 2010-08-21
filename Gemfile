@@ -1,13 +1,19 @@
-gem "cramp", :path => File.dirname(__FILE__)
+source 'http://rubygems.org'
 
 gem 'activesupport', '3.0.0.beta3'
 gem 'activemodel', '3.0.0.beta3'
+gem 'cramp', :path => File.dirname(__FILE__)
 
-gem "arel", '0.3.3'
-gem "rack", "1.1.0"
-gem "mysqlplus", "0.1.1"
-gem "eventmachine", "0.12.10"
+gem 'activesupport', '3.0.0.beta4'
+gem 'rack', '~> 1.1.0'
+gem 'eventmachine', '~> 0.12.10'
 
 group :test do
   gem 'usher'
+end
+
+group :example do
+  gem 'usher'
+  gem 'tramp', '~> 0.1'
+  gem 'thin', '~> 1.2.7'
 end

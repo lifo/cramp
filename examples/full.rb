@@ -1,19 +1,23 @@
-require File.join(File.dirname(__FILE__), "../vendor/gems/environment")
-$: << File.join(File.dirname(__FILE__), "../lib")
+require "rubygems"
+require "bundler"
 
-require 'cramp/controller'
-require 'cramp/model'
+Bundler.setup(:default, :example)
 
-Cramp::Model.init(:username => 'root', :database => 'arel_development')
+require 'cramp'
+require 'tramp'
+require 'usher'
+require 'thin'
 
-class User < Cramp::Model::Base
+Tramp.init(:username => 'root', :database => 'arel_development', :socket => '/tmp/mysql.sock')
+
+class User < Tramp::Base
   attribute :id, :type => Integer, :primary_key => true
   attribute :name
 
   validates_presence_of :name
 end
 
-class UsersController < Cramp::Controller::Action
+class UsersController < Cramp::Action
   before_start :verify_id, :find_user
 
   def verify_id
@@ -44,7 +48,7 @@ class UsersController < Cramp::Controller::Action
   on_finish :stop_benchmark
 
   def poll_user
-    User.where(User[:id].eq(@user.id)).first _(:on_user_find)
+    User.where(User[:id].eq(@user.id)).first method(:on_user_find)
   end
 
   def on_user_find(user)

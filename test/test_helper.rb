@@ -4,7 +4,7 @@ require "bundler"
 Bundler.setup
 Bundler.require :default, :test
 
-require 'cramp/controller'
+require 'cramp'
 require 'test/unit'
 require 'usher'
 

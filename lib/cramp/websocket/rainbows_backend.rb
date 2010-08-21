@@ -1,7 +1,7 @@
 require 'rainbows'
 
 class Rainbows::EventMachine::Client
-  include Cramp::Controller::WebsocketExtension
+  include Cramp::WebsocketExtension
 
   def websocket_handshake!
     @state = :websocket

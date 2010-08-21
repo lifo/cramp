@@ -1,9 +1,11 @@
-require File.join(File.dirname(__FILE__), "../vendor/gems/environment")
-$: << File.join(File.dirname(__FILE__), "../lib")
+require "rubygems"
+require "bundler"
+Bundler.setup(:default, :example)
 
-require 'cramp/controller'
+require 'cramp'
+require 'thin'
 
-class StreamController < Cramp::Controller::Action
+class StreamController < Cramp::Action
   periodic_timer :send_data, :every => 1
   periodic_timer :check_limit, :every => 2
 
