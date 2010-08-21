@@ -1,2 +1,3 @@
 .bundle/*
 test/tests.log
+.rvmrc
