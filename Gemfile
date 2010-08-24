@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
-gem 'activesupport', '3.0.0.beta3'
-gem 'activemodel', '3.0.0.beta3'
+gem 'activesupport', '>= 3.0.0.rc2'
+gem 'activemodel', '>= 3.0.0.rc2'
 gem 'cramp', :path => File.dirname(__FILE__)
 
 gem 'rack', '~> 1.1.0'
