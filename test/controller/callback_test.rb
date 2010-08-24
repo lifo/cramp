@@ -32,7 +32,7 @@ class CallbackTest < Cramp::TestCase
 
   end
 
-  App = Usher::Interface.for(:rack) do
+  App = HttpRouter.new do
     add('/:id').to(CallbackController)
   end
 

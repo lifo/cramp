@@ -5,7 +5,7 @@ Bundler.setup(:default, :example)
 
 require 'cramp'
 require 'tramp'
-require 'usher'
+require 'http_router'
 require 'thin'
 
 Tramp.init(:username => 'root', :database => 'arel_development', :socket => '/tmp/mysql.sock')
@@ -67,7 +67,7 @@ class UsersController < Cramp::Action
   end
 end
 
-routes = Usher::Interface.for(:rack) do
+routes = HttpRouter.new do
   add('/users/:id').to(UsersController)
 end
 

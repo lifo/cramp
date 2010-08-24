@@ -3,7 +3,7 @@ require "bundler"
 Bundler.setup(:default, :example)
 
 require 'cramp'
-require 'usher'
+require 'http_router'
 require 'thin'
 
 class HomeController < Cramp::Action
@@ -25,7 +25,7 @@ class HomeController < Cramp::Action
 
 end
 
-routes = Usher::Interface.for(:rack) do
+routes = HttpRouter.new do
   add('/(:password)').to(HomeController)
 end
 

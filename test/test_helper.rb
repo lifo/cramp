@@ -6,7 +6,7 @@ Bundler.require :default, :test
 
 require 'cramp'
 require 'test/unit'
-require 'usher'
+require 'http_router'
 
 require 'active_support/buffered_logger'
 logger = ActiveSupport::BufferedLogger.new(File.join(File.dirname(__FILE__), "tests.log"))

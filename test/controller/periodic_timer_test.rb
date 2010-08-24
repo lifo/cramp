@@ -19,7 +19,7 @@ class PeiodicTimerTest < Cramp::TestCase
     end
   end
 
-  App = Usher::Interface.for(:rack) do
+  App = HttpRouter.new do
     add('/send_data').to(SendDataController)
     add('/finishing_timer').to(FinishingTimerController)
   end
