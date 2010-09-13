@@ -1,10 +1,10 @@
 source 'http://rubygems.org'
 
-gem 'activesupport', '>= 3.0.0.rc2'
-gem 'activemodel', '>= 3.0.0.rc2'
+gem 'activesupport', '>= 3.0.0'
+gem 'activemodel', '>= 3.0.0'
 gem 'cramp', :path => File.dirname(__FILE__)
 
-gem 'rack', '~> 1.1.0'
+gem 'rack', '>= 1.1.0'
 gem 'eventmachine', '~> 0.12.10'
 
 group :test do
