@@ -12,8 +12,8 @@ module Cramp
       upgrade =  "HTTP/1.1 101 Web Socket Protocol Handshake\r\n"
       upgrade << "Upgrade: WebSocket\r\n"
       upgrade << "Connection: Upgrade\r\n"
-      upgrade << "WebSocket-Origin: #{@env['HTTP_ORIGIN']}\r\n"
-      upgrade << "WebSocket-Location: #{location}\r\n\r\n"
+      upgrade << "Sec-WebSocket-Origin: #{@env['HTTP_ORIGIN']}\r\n"
+      upgrade << "Sec-WebSocket-Location: #{location}\r\n\r\n"
 
       upgrade
     end
