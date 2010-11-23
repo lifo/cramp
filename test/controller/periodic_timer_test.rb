@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PeiodicTimerTest < Cramp::TestCase
+class PeriodicTimerTest < Cramp::TestCase
 
   class SendDataController < Cramp::Action
     periodic_timer :send_data, :every => 0
@@ -31,7 +31,7 @@ class PeiodicTimerTest < Cramp::TestCase
   def test_send_data_periodic_timer
     get_body_chunks '/send_data', :count => 10 do |chunks|
       assert_equal 10, chunks.size
-      assert ["Hello"], chunks.uniq
+      assert_equal ["Hello"], chunks.uniq
     end
   end
 

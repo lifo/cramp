@@ -1,1 +1,37 @@
 Check my blog entry "Introducing Cramp":http://m.onkey.org/2010/1/7/introducing-cramp for the details.
+
+h2. Installation
+
+_If using OS X, first follow the "mysqlplus":https://github.com/oldmoe/mysqlplus installation instructions._
+
+Cramp works with either thin or Rainbows!
+
+<pre>
+  gem install thin
+</pre>
+
+or:
+
+<pre>
+  gem install rainbows
+</pre>
+
+And then:
+
+<pre>
+  gem install cramp
+</pre>
+
+h2. Development
+
+First fork this project. Then:
+
+<pre>
+  gem install bundler (if you don't have it)
+  git clone git@github.com:[your-username]/cramp.git
+  cd cramp
+  bundle install
+  rake
+</pre>
+
+Make sure your changes include tests that cover those changes. Finally, submit a pull request.
