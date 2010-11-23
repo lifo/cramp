@@ -62,8 +62,11 @@ module Cramp
     end
 
     def params
-      @params ||= request.params.update(@env['router.params']).symbolize_keys
+      @params ||= request.params.update(route_params).symbolize_keys
     end
 
+    def route_params
+      @env['router.params']||@env['usher.params']
+    end
   end
 end
