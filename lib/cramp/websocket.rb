@@ -7,7 +7,7 @@ module Cramp
     end
 
     def websocket_upgrade_data
-      location  = "ws://#{@env['HTTP_HOST']}#{@env['REQUEST_PATH']}"
+      location  = "ws://#{@env['HTTP_HOST']}#{@env['REQUEST_URI']}"
       challenge = solve_challange(
         @env['HTTP_SEC_WEBSOCKET_KEY1'],
         @env['HTTP_SEC_WEBSOCKET_KEY2'],
