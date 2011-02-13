@@ -2,8 +2,10 @@ module Cramp
   class SSE < Abstract
     include PeriodicTimer
 
-    def render(data)
+    def render(data, options = {})
       result = "id: #{event_id}\n"
+      result << "retry: #{options[:retry]}\n" if options[:retry]
+
       data.split(/\n/).each {|d| result << "data: #{d}\n" }
       result << "\n"
 

@@ -12,6 +12,8 @@ class TimeController < Cramp::SSE
 
   def send_latest_time
     data = {'time' => Time.now.to_i}.to_json
+
+    # render data, :retry => 10
     render data
   end
 end
