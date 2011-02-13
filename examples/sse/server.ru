@@ -24,5 +24,5 @@ end
 
 file_server = Rack::File.new(File.join(File.dirname(__FILE__), 'public'))
 
-# bundle exec thin -R examples/sse/server.ru start
+# bundle exec thin -V -R examples/sse/server.ru start
 run Rack::Cascade.new([file_server, routes])
