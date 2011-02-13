@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    cramp (0.11)
+    cramp (0.12)
       activesupport (~> 3.0.4)
       eventmachine (~> 0.12.10)
       rack (~> 1.2.1)
@@ -19,7 +19,6 @@ GEM
     builder (2.1.2)
     daemons (1.1.0)
     eventmachine (0.12.10)
-    fuzzyhash (0.0.11)
     http_router (0.5.3)
       rack (>= 1.0.0)
       url_mount (~> 0.2.1)
@@ -37,8 +36,6 @@ GEM
       mysqlplus (~> 0.1.1)
     url_mount (0.2.1)
       rack
-    usher (0.8.3)
-      fuzzyhash (>= 0.0.11)
 
 PLATFORMS
   ruby
@@ -51,4 +48,3 @@ DEPENDENCIES
   rack (~> 1.2.1)
   thin (~> 1.2.7)
   tramp (~> 0.1)
-  usher

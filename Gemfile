@@ -12,7 +12,6 @@ end
 
 group :example do
   gem 'http_router'
-  gem 'usher'
   gem 'tramp', '~> 0.1'
   gem 'thin', '~> 1.2.7'
 end
