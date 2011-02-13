@@ -20,6 +20,7 @@ module Cramp
 
   autoload :Action, "cramp/action"
   autoload :Websocket, "cramp/websocket"
+  autoload :SSE, "cramp/sse"
   autoload :Body, "cramp/body"
   autoload :PeriodicTimer, "cramp/periodic_timer"
   autoload :KeepConnectionAlive, "cramp/keep_connection_alive"
