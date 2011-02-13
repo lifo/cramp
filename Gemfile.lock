@@ -23,8 +23,12 @@ GEM
       rack (>= 1.0.0)
       url_mount (~> 0.2.1)
     i18n (0.5.0)
+    kgio (2.3.0)
     mysqlplus (0.1.2)
     rack (1.2.1)
+    rainbows (3.1.0)
+      rack (~> 1.1)
+      unicorn (~> 3.4)
     thin (1.2.7)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
@@ -34,6 +38,9 @@ GEM
       activesupport (~> 3.0.0.beta4)
       arel (~> 0.4.0)
       mysqlplus (~> 0.1.1)
+    unicorn (3.4.0)
+      kgio (~> 2.2)
+      rack
     url_mount (0.2.1)
       rack
 
@@ -46,5 +53,6 @@ DEPENDENCIES
   eventmachine (~> 0.12.10)
   http_router
   rack (~> 1.2.1)
+  rainbows
   thin (~> 1.2.7)
   tramp (~> 0.1)

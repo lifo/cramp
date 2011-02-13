@@ -11,6 +11,7 @@ group :test do
 end
 
 group :example do
+  gem 'rainbows'
   gem 'http_router'
   gem 'tramp', '~> 0.1'
   gem 'thin', '~> 1.2.7'
