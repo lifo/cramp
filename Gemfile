@@ -4,7 +4,8 @@ gem 'activesupport', '>= 3.0.0'
 gem 'activemodel', '>= 3.0.0'
 gem 'cramp', :path => File.dirname(__FILE__)
 
-gem 'rack', '>= 1.1.0'
+gem 'activesupport', '3.0.4'
+gem 'rack', '~> 1.2.1'
 gem 'eventmachine', '~> 0.12.10'
 
 group :test do
