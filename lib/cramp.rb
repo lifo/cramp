@@ -14,7 +14,7 @@ require 'active_support/buffered_logger'
 require 'rack'
 
 module Cramp
-  VERSION = '0.11'
+  VERSION = '0.12'
 
   mattr_accessor :logger
 
