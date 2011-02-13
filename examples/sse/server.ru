@@ -8,7 +8,7 @@ require 'active_support/json'
 
 class TimeController < Cramp::SSE
   on_start :send_latest_time
-  periodic_timer :send_latest_time, :every => 25
+  periodic_timer :send_latest_time, :every => 2
 
   def send_latest_time
     data = {'time' => Time.now.to_i}.to_json
@@ -24,5 +24,5 @@ end
 
 file_server = Rack::File.new(File.join(File.dirname(__FILE__), 'public'))
 
-# bundle exec rainbows -E deployment -c examples/sse/rainbows.conf examples/sse/server.ru
+# bundle exec thin -R examples/sse/server.ru start
 run Rack::Cascade.new([file_server, routes])
