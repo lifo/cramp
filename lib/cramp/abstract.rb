@@ -2,10 +2,7 @@ require 'active_support/core_ext/hash/keys'
 
 module Cramp
   class Abstract
-
     include Callbacks
-
-    ASYNC_RESPONSE = [-1, {}, []].freeze
 
     class << self
       def call(env)
@@ -19,7 +16,7 @@ module Cramp
 
     def process
       EM.next_tick { before_start }
-      ASYNC_RESPONSE
+      throw :async
     end
 
     def continue
@@ -66,7 +63,7 @@ module Cramp
     end
 
     def route_params
-      @env['router.params']||@env['usher.params']
+      @env['router.params'] || @env['usher.params']
     end
   end
 end
