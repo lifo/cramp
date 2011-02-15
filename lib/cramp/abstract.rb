@@ -12,6 +12,7 @@ module Cramp
 
     def initialize(env)
       @env = env
+      @finished = false
     end
 
     def process
@@ -42,7 +43,12 @@ module Cramp
       end
     end
 
+    def finished?
+      !!@finished
+    end
+
     def finish
+      @finished = true
       @body.succeed
     end
 

@@ -34,7 +34,7 @@ module Cramp
 
     def on_start
       self.class.on_start_callback.each do |callback|
-        EM.next_tick { send(callback) }
+        EM.next_tick { send(callback) unless @finished }
       end
     end
 

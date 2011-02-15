@@ -37,7 +37,7 @@ module Cramp
 
     def start_periodic_timers
       self.class.periodic_timers.each do |method, options|
-        @timers << EventMachine::PeriodicTimer.new(options[:every] || 1) { send(method) }
+        @timers << EventMachine::PeriodicTimer.new(options[:every] || 1) { send(method) unless @finished }
       end
     end
 
