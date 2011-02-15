@@ -12,7 +12,7 @@ module Cramp
     end
 
     def keep_connection_alive
-      render " "
+      @body.call " "
     end
 
   end
