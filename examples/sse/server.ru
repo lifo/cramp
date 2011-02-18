@@ -6,7 +6,9 @@ require 'cramp'
 require 'http_router'
 require 'active_support/json'
 
-class TimeController < Cramp::SSE
+class TimeController < Cramp::Action
+  self.transport = :sse
+
   on_start :send_latest_time
   periodic_timer :send_latest_time, :every => 2
 

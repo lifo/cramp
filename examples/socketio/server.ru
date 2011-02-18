@@ -8,7 +8,9 @@ require 'yajl'
 require 'active_support/json'
 require 'active_support/core_ext/array/wrap'
 
-class ChatController < Cramp::LongPolling
+class ChatController < Cramp::Action
+  self.transport = :long_polling
+
   @@connected = {}
   @@buffer = [ {'message' => ['lifo', 'hello']} ]
   @@channel = EM::Channel.new
