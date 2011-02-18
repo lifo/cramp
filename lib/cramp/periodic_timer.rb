@@ -19,9 +19,11 @@ module Cramp
       @timers = []
     end
 
+    protected
+
     def continue
       super
-      EM.next_tick { start_periodic_timers }
+      start_periodic_timers
     end
 
     def init_async_body
@@ -33,16 +35,18 @@ module Cramp
       end
     end
 
-    private
-
     def start_periodic_timers
       self.class.periodic_timers.each do |method, options|
-        @timers << EventMachine::PeriodicTimer.new(options[:every] || 1) { send(method) unless @finished }
+        @timers << EventMachine::PeriodicTimer.new(options[:every] || 1) { timer_method_wrapper(method) unless @finished }
       end
     end
 
     def stop_periodic_timers
       @timers.each {|t| t.cancel }
+    end
+
+    def timer_method_wrapper(method)
+      send(method)
     end
 
   end

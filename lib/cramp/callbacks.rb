@@ -26,7 +26,7 @@ module Cramp
 
     def before_start(n = 0)
       if callback = self.class.before_start_callbacks[n]
-        EM.next_tick { send(callback) { before_start(n+1) } }
+        callback_wrapper { send(callback) { before_start(n+1) } }
       else
         continue
       end
@@ -34,14 +34,18 @@ module Cramp
 
     def on_start
       self.class.on_start_callback.each do |callback|
-        EM.next_tick { send(callback) unless @finished }
+        callback_wrapper { send(callback) unless @finished }
       end
     end
 
     def on_finish
       self.class.on_finish_callbacks.each do |callback|
-        EM.next_tick { send(callback) }
+        callback_wrapper { send(callback) }
       end
+    end
+
+    def callback_wrapper
+      EM.next_tick { yield }
     end
 
   end
