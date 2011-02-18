@@ -27,10 +27,6 @@ module Cramp
       end
     end
 
-    def transport
-      :regular
-    end
-
     def render_regular(body, *)
       @body.call(body)
     end

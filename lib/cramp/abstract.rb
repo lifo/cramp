@@ -4,6 +4,9 @@ module Cramp
   class Abstract
     include Callbacks
 
+    class_attribute :transport
+    self.transport = :regular
+
     class << self
       def call(env)
         controller = new(env).process

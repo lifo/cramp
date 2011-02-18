@@ -1,10 +1,5 @@
 module Cramp
   class SSE < Action
-    protected
-
-    def transport
-      :sse
-    end
-
+    self.transport = :sse
   end
 end
