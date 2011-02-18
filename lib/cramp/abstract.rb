@@ -3,6 +3,7 @@ require 'active_support/core_ext/hash/keys'
 module Cramp
   class Abstract
     include Callbacks
+    include FiberPool
 
     class_attribute :transport
     self.transport = :regular
@@ -31,7 +32,6 @@ module Cramp
       status, headers = respond_with
       send_initial_response(status, headers, @body)
 
-      EM.next_tick { start } if respond_to?(:start)
       EM.next_tick { on_start }
     end
 

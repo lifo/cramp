@@ -32,5 +32,6 @@ module Cramp
   autoload :KeepConnectionAlive, "cramp/keep_connection_alive"
   autoload :Abstract, "cramp/abstract"
   autoload :Callbacks, "cramp/callbacks"
+  autoload :FiberPool, "cramp/fiber_pool"
   autoload :TestCase, "cramp/test_case"
 end

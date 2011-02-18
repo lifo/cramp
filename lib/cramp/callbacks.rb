@@ -33,6 +33,8 @@ module Cramp
     end
 
     def on_start
+      callback_wrapper { start } if respond_to?(:start)
+
       self.class.on_start_callback.each do |callback|
         callback_wrapper { send(callback) unless @finished }
       end
