@@ -13,6 +13,6 @@ class FibersController < Cramp::Action
   end
 end
 
-# bundle exec thin -V -R examples/fibers_hello_world.ru start
-# bundle exec rainbows -E deployment -c examples/rainbows.conf examples/fibers_hello_world.ru
+# bundle exec thin -V -R examples/fibers/hello_world.ru start
+# bundle exec rainbows -E deployment -c examples/rainbows.conf examples/fibers/hello_world.ru
 run FibersController
