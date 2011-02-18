@@ -20,6 +20,8 @@ module Cramp
       throw :async
     end
 
+    protected
+
     def continue
       init_async_body
 
