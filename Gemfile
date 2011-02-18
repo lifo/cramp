@@ -14,6 +14,9 @@ group :example do
   gem 'activerecord', '3.0.4'
   gem 'mysql2'
 
+  gem 'em-http-request'
+  gem 'em-synchrony'
+
   gem 'rainbows'
   gem 'yajl-ruby', :require => 'yajl'
   gem 'http_router'
