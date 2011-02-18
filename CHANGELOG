@@ -1,0 +1,10 @@
+== 0.13 Facelift (Unreleased)
+
+* Vendor Mohammad Ali's awesome FiberPool
+* Make it easy to choose the transport method dynamically using self.transport at class level or from before_start callbacks
+* Added long polling support
+* Added SSE support
+
+== 0.12 Sanity Restored
+
+* Fixed all the gem dependencies. Extracted tramp.
