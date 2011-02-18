@@ -14,6 +14,5 @@ group :example do
   gem 'rainbows'
   gem 'yajl-ruby', :require => 'yajl'
   gem 'http_router'
-  gem 'tramp', '~> 0.1'
   gem 'thin', '~> 1.2.7'
 end

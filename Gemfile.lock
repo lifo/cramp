@@ -9,22 +9,13 @@ PATH
 GEM
   remote: http://rubygems.org/
   specs:
-    activemodel (3.0.4)
-      activesupport (= 3.0.4)
-      builder (~> 2.1.2)
-      i18n (~> 0.4)
     activesupport (3.0.4)
-    arel (0.4.0)
-      activesupport (>= 3.0.0.beta)
-    builder (2.1.2)
     daemons (1.1.0)
     eventmachine (0.12.10)
     http_router (0.5.3)
       rack (>= 1.0.0)
       url_mount (~> 0.2.1)
-    i18n (0.5.0)
-    kgio (2.3.1)
-    mysqlplus (0.1.2)
+    kgio (2.3.2)
     rack (1.2.1)
     rainbows (3.1.0)
       rack (~> 1.1)
@@ -33,11 +24,6 @@ GEM
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
       rack (>= 1.0.0)
-    tramp (0.2)
-      activemodel (~> 3.0.4)
-      activesupport (~> 3.0.4)
-      arel (~> 0.4.0)
-      mysqlplus (~> 0.1.2)
     unicorn (3.4.0)
       kgio (~> 2.2)
       rack
@@ -56,5 +42,4 @@ DEPENDENCIES
   rack (~> 1.2.1)
   rainbows
   thin (~> 1.2.7)
-  tramp (~> 0.1)
   yajl-ruby
