@@ -1,3 +1,7 @@
+###################################################################################################
+#   Implements the example described in http://www.html5rocks.com/tutorials/eventsource/basics    #
+###################################################################################################
+
 require "rubygems"
 require "bundler"
 Bundler.setup(:default, :example)
