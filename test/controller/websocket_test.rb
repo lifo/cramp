@@ -22,7 +22,7 @@ class WebSocketTest < Cramp::TestCase
     env['async.callback'] = proc {|resp| }
 
     EM.run do
-      app.call(env)
+      catch(:async) { app.call(env) }
       env['websocket.receive_callback'].call("\000Hello Websock!\377")
       EM.stop
     end

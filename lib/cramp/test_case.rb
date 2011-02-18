@@ -14,7 +14,9 @@ module Cramp
       callback = options.delete(:callback) || block
       headers = headers.merge('async.callback' => callback)
 
-      EM.run { @request.get(path, headers) }
+      EM.run do
+        catch(:async) { @request.get(path, headers) }
+      end
     end
 
     def get_body(path, options = {}, headers = {}, &block)
@@ -22,7 +24,9 @@ module Cramp
       response_callback = proc {|response| response[-1].each {|chunk| callback.call(chunk) } }
       headers = headers.merge('async.callback' => response_callback)
 
-      EM.run { @request.get(path, headers) }
+      EM.run do
+        catch(:async) { @request.get(path, headers) }
+      end
     end
 
     def get_body_chunks(path, options = {}, headers = {}, &block)
