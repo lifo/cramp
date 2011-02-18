@@ -14,6 +14,10 @@ require 'active_support/buffered_logger'
 
 require 'rack'
 
+if RUBY_VERSION >= '1.9.1'
+  require File.join(File.dirname(__FILE__), 'vendor/fiber_pool')
+end
+  
 module Cramp
   VERSION = '0.12'
 
