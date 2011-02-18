@@ -1,5 +1,18 @@
 == 0.13 Facelift (Unreleased)
 
+* Added use_fiber_pool for wrapping every on_start/on_finish/periodic_timer callbacks within a Fiber. Default fiber pool size is 100.
+
+  Example:
+
+  class FibersController < Cramp::Action
+    use_fiber_pool :size => 200
+
+    def start
+      render "Hello World"
+      finish
+    end
+  end
+
 * Vendor Mohammad Ali's awesome FiberPool
 * Make it easy to choose the transport method dynamically using self.transport at class level or from before_start callbacks
 * Added long polling support
