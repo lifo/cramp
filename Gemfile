@@ -11,6 +11,9 @@ group :test do
 end
 
 group :example do
+  gem 'activerecord', '3.0.4'
+  gem 'mysql2'
+
   gem 'rainbows'
   gem 'yajl-ruby', :require => 'yajl'
   gem 'http_router'

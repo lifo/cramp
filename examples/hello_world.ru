@@ -11,5 +11,6 @@ class WelcomeController < Cramp::Action
   end
 end
 
-# rainbows -E deployment -c rainbows.conf hello_world.ru
+# bundle exec thin -V -R examples/hello_world.ru start
+# bundle exec rainbows -E deployment -c examples/rainbows.conf examples/hello_world.ru
 run WelcomeController
