@@ -22,11 +22,11 @@ module Cramp
       # Overrides wrapper methods to run callbacks in a fiber
 
       def callback_wrapper
-        self.fiber_pool.spawn { super }
+        self.fiber_pool.spawn { yield }
       end
 
       def timer_method_wrapper(method)
-        self.fiber_pool.spawn { super }
+        self.fiber_pool.spawn { send(method) }
       end
     end
 
