@@ -31,6 +31,17 @@ end
 
 class Thin::Request
   include Cramp::WebsocketExtension
+
+  def websocket_upgrade_data
+    handler = if @env['HTTP_SEC_WEBSOCKET_KEY1'] and @env['HTTP_SEC_WEBSOCKET_KEY2']
+      Protocol76
+    else
+      Protocol75
+    end
+
+    handler.new(@env, websocket_url, body.read).handshake
+  end
+
 end
 
 class Thin::Response
