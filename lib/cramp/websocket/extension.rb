@@ -16,7 +16,7 @@ module Cramp
 
     def websocket_url
       scheme = secure_websocket? ? 'wss:' : 'ws:'
-      @env['websocket.url'] = "#{ scheme }//#{ @env['HTTP_HOST'] }#{ @env['REQUEST_PATH'] }"
+      @env['websocket.url'] = "#{ scheme }//#{ @env['HTTP_HOST'] }#{ @env['REQUEST_URI'] }"
     end
 
     class WebSocketHandler
