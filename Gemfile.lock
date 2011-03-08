@@ -2,16 +2,16 @@ PATH
   remote: .
   specs:
     cramp (0.12)
-      activesupport (~> 2.3.9)
+      activesupport (~> 2.3.5)
       eventmachine (~> 0.12.10)
       rack (~> 1.2.1)
 
 GEM
   remote: http://rubygems.org/
   specs:
-    activerecord (2.3.9)
-      activesupport (= 2.3.9)
-    activesupport (2.3.9)
+    activerecord (2.3.5)
+      activesupport (= 2.3.5)
+    activesupport (2.3.5)
     addressable (2.2.4)
     daemons (1.1.0)
     em-http-request (0.3.0)
@@ -46,8 +46,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord (= 2.3.9)
-  activesupport (= 2.3.9)
+  activerecord (= 2.3.5)
+  activesupport (= 2.3.5)
   cramp!
   em-http-request
   em-synchrony

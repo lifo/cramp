@@ -5,7 +5,7 @@ module Cramp
     include Callbacks
     include FiberPool
 
-    class_attribute :transport
+    class_inheritable_accessor :transport
     self.transport = :regular
 
     class << self

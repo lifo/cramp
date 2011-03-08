@@ -4,7 +4,7 @@ module Cramp
       klass.class_eval do
         extend ClassMethods
         
-        class_attribute :fiber_pool
+        class_inheritable_accessor :fiber_pool
       end
     end
 
