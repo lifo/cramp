@@ -1,12 +1,14 @@
 module Cramp
   module PeriodicTimer
-
-    extend ActiveSupport::Concern
-
-    included do
-      class_inheritable_accessor :periodic_timers, :instance_reader => false
-      self.periodic_timers ||= []
+    
+    def self.included(klass)
+      klass.class_eval do
+        extend ClassMethods
+        class_inheritable_accessor :periodic_timers, :instance_reader => false
+        self.periodic_timers ||= []
+      end
     end
+
 
     module ClassMethods
       def periodic_timer(method, options = {})

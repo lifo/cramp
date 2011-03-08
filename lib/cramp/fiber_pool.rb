@@ -1,9 +1,11 @@
 module Cramp
   module FiberPool
-    extend ActiveSupport::Concern
-
-    included do
-      class_attribute :fiber_pool
+    def self.included(klass)
+      klass.class_eval do
+        extend ClassMethods
+        
+        class_attribute :fiber_pool
+      end
     end
 
     module ClassMethods

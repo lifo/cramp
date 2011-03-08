@@ -8,7 +8,6 @@ require 'active_support/core_ext/class/attribute_accessors'
 require 'active_support/core_ext/module/aliasing'
 require 'active_support/core_ext/module/attribute_accessors'
 require 'active_support/core_ext/kernel/reporting'
-require 'active_support/concern'
 require 'active_support/core_ext/hash/indifferent_access'
 require 'active_support/buffered_logger'
 

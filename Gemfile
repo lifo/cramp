@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'cramp', :path => File.dirname(__FILE__)
 
-gem 'activesupport', '3.0.4'
+gem 'activesupport', '2.3.9'
 gem 'rack', '~> 1.2.1'
 gem 'eventmachine', '~> 0.12.10'
 
@@ -11,7 +11,7 @@ group :test do
 end
 
 group :example do
-  gem 'activerecord', '3.0.4'
+  gem 'activerecord', '2.3.9'
   gem 'mysql2'
 
   gem 'em-http-request'

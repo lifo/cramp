@@ -1,13 +1,16 @@
 module Cramp
   module Callbacks
 
-    extend ActiveSupport::Concern
+    def self.included(klass)
+      klass.class_eval do
+        extend ClassMethods
 
-    included do
-      class_inheritable_accessor :before_start_callbacks, :on_finish_callbacks, :on_start_callback, :instance_reader => false
-      self.before_start_callbacks = []
-      self.on_finish_callbacks = []
-      self.on_start_callback = []
+        class_inheritable_accessor :before_start_callbacks, :on_finish_callbacks, :on_start_callback, :instance_reader => false
+        
+        self.before_start_callbacks = []
+        self.on_finish_callbacks = []
+        self.on_start_callback = []
+      end
     end
 
     module ClassMethods

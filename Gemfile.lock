@@ -2,26 +2,17 @@ PATH
   remote: .
   specs:
     cramp (0.12)
-      activesupport (~> 3.0.4)
+      activesupport (~> 2.3.9)
       eventmachine (~> 0.12.10)
       rack (~> 1.2.1)
 
 GEM
   remote: http://rubygems.org/
   specs:
-    activemodel (3.0.4)
-      activesupport (= 3.0.4)
-      builder (~> 2.1.2)
-      i18n (~> 0.4)
-    activerecord (3.0.4)
-      activemodel (= 3.0.4)
-      activesupport (= 3.0.4)
-      arel (~> 2.0.2)
-      tzinfo (~> 0.3.23)
-    activesupport (3.0.4)
+    activerecord (2.3.9)
+      activesupport (= 2.3.9)
+    activesupport (2.3.9)
     addressable (2.2.4)
-    arel (2.0.8)
-    builder (2.1.2)
     daemons (1.1.0)
     em-http-request (0.3.0)
       addressable (>= 2.0.0)
@@ -34,7 +25,6 @@ GEM
     http_router (0.5.3)
       rack (>= 1.0.0)
       url_mount (~> 0.2.1)
-    i18n (0.5.0)
     kgio (2.3.2)
     mysql2 (0.2.6)
     rack (1.2.1)
@@ -45,7 +35,6 @@ GEM
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
       rack (>= 1.0.0)
-    tzinfo (0.3.24)
     unicorn (3.4.0)
       kgio (~> 2.2)
       rack
@@ -57,8 +46,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord (= 3.0.4)
-  activesupport (= 3.0.4)
+  activerecord (= 2.3.9)
+  activesupport (= 2.3.9)
   cramp!
   em-http-request
   em-synchrony
