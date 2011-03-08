@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.homepage = 'http://m.onkey.org'
 
   s.add_dependency('activesupport', '~> 2.3.5')
-  s.add_dependency('rack',          '~> 1.2.1')
+  s.add_dependency('rack',          '~> 1.1.0')
   s.add_dependency('eventmachine',  '~> 0.12.10')
 
   s.files = Dir['README', 'MIT-LICENSE', 'lib/**/*']

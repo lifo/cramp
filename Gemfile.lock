@@ -4,7 +4,7 @@ PATH
     cramp (0.12)
       activesupport (~> 2.3.5)
       eventmachine (~> 0.12.10)
-      rack (~> 1.2.1)
+      rack (~> 1.1.0)
 
 GEM
   remote: http://rubygems.org/
@@ -27,7 +27,7 @@ GEM
       url_mount (~> 0.2.1)
     kgio (2.3.2)
     mysql2 (0.2.6)
-    rack (1.2.1)
+    rack (1.1.1)
     rainbows (3.1.0)
       rack (~> 1.1)
       unicorn (~> 3.4)
@@ -54,7 +54,7 @@ DEPENDENCIES
   eventmachine (~> 0.12.10)
   http_router
   mysql2
-  rack (~> 1.2.1)
+  rack (~> 1.1.0)
   rainbows
   thin (~> 1.2.7)
   yajl-ruby

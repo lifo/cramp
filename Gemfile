@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'cramp', :path => File.dirname(__FILE__)
 
 gem 'activesupport', '2.3.5'
-gem 'rack', '~> 1.2.1'
+gem 'rack', '~> 1.1.0'
 gem 'eventmachine', '~> 0.12.10'
 
 group :test do
