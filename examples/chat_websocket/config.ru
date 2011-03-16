@@ -52,6 +52,6 @@ routes = HttpRouter.new do
   add('/socket').to(ChatRamp::SocketAction)
 end
 
-# bundle exec rainbows -c examples/rainbows.conf examples/chat_websocket/server.ru
-# bundle exec thin -V -R examples/chat_websocket/server.ru start
+# bundle exec rainbows -c examples/rainbows.conf examples/chat_websocket/config.ru
+# bundle exec thin -V -R examples/chat_websocket/config.ru start
 run routes
