@@ -25,7 +25,8 @@ module Cramp
     end
 
     def render(body)
-      @body.call("\x00#{body}\xff")
+      data = ["\x00", body, "\xFF"].map(&method(:encode)) * ''
+      @body.call(data)
     end
 
     def _on_data_receive(data)
@@ -36,6 +37,12 @@ module Cramp
         end
       end
     end
-    
+
+    protected
+
+    def encode(string, encoding = 'UTF-8')
+      string.respond_to?(:force_encoding) ? string.force_encoding(encoding) : string
+    end
+
   end
 end
