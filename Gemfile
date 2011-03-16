@@ -18,7 +18,10 @@ group :example do
   gem 'em-synchrony'
 
   gem 'rainbows'
-  gem 'yajl-ruby', :require => 'yajl'
-  gem 'http_router'
   gem 'thin', '~> 1.2.7'
+
+  gem 'yajl-ruby', :require => 'yajl'
+
+  gem 'http_router'
+  gem 'erubis'
 end

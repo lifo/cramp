@@ -9,6 +9,7 @@ PATH
 GEM
   remote: http://rubygems.org/
   specs:
+    abstract (1.0.0)
     activemodel (3.0.4)
       activesupport (= 3.0.4)
       builder (~> 2.1.2)
@@ -29,6 +30,8 @@ GEM
       eventmachine (>= 0.12.9)
     em-synchrony (0.2.0)
       eventmachine (>= 0.12.9)
+    erubis (2.6.6)
+      abstract (>= 1.0.0)
     escape_utils (0.2.0)
     eventmachine (0.12.10)
     http_router (0.5.3)
@@ -62,6 +65,7 @@ DEPENDENCIES
   cramp!
   em-http-request
   em-synchrony
+  erubis
   eventmachine (~> 0.12.10)
   http_router
   mysql2
