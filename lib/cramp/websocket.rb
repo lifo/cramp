@@ -20,7 +20,10 @@ module Cramp
     end
 
     def process
-      @env['websocket.receive_callback'] = method(:_on_data_receive)
+      @buffer = []
+      @buffering = false
+      @env['websocket.receive_callback'] = lambda {|data| data.each_char(&method(:_on_data_receive)) }
+
       super
     end
 
@@ -29,12 +32,25 @@ module Cramp
       @body.call(data)
     end
 
+    # _on_data_receive/encode methods derived from Faye - https://github.com/jcoglan/faye
+    #
+    # Copyright (c) 2009-2010 James Coglan
+    # The MIT License
     def _on_data_receive(data)
-      data = data.split(/\000([^\377]*)\377/).select{|d| !d.empty? }.collect{|d| d.gsub(/^\x00|\xff$/, '') }
-      self.class.on_data_callbacks.each do |callback|
-        data.each do |message|
+      case data
+      when "\x00" then
+        @buffering = true
+      when "\xFF" then
+        message = encode(@buffer.join(''))
+
+        self.class.on_data_callbacks.each do |callback|
           EM.next_tick { send(callback, message) }
         end
+
+        @buffer = []
+        @buffering = false
+      else
+        @buffer.push(data) if @buffering
       end
     end
 
