@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    cramp (0.12)
+    cramp (0.13)
       activesupport (~> 3.0.9)
       eventmachine (~> 0.12.10)
       rack (~> 1.2.1)
