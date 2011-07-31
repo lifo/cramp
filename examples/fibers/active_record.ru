@@ -12,7 +12,10 @@ class User < ActiveRecord::Base
 end
 
 class FullFibersController < Cramp::Action
-  use_fiber_pool
+  use_fiber_pool do |pool|
+    # Called everytime after a fiber is done a callback
+    pool.generic_callbacks << proc { ActiveRecord::Base.clear_active_connections! }
+  end
 
   on_start :init_last_user
   periodic_timer :watch_out_for_new_user
