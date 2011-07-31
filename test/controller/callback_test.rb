@@ -4,6 +4,7 @@ class CallbackTest < Cramp::TestCase
 
   class CallbackController < Cramp::Action
     cattr_accessor :logs
+    cattr_accessor :was_called
     self.logs = []
 
     before_start :check_id
@@ -18,6 +19,7 @@ class CallbackTest < Cramp::TestCase
 
     on_start :send_square
     on_finish :write_logs
+    on_new_data :push_data
 
     def send_square
       number = params[:id].to_i
@@ -30,6 +32,10 @@ class CallbackTest < Cramp::TestCase
       self.logs << params[:id]
     end
 
+    def push_data(params)
+      #is just a simple mock
+      self.was_called = true
+    end
   end
 
   App = HttpRouter.new do
@@ -59,5 +65,11 @@ class CallbackTest < Cramp::TestCase
   def test_on_finish_callback
     get_body_chunks '/4'
     assert_equal ['4'], CallbackController.logs
+  end
+
+  def test_on_new_data_callback
+    assert_equal nil, CallbackController.was_called
+    CallbackController.push_new_data
+    assert_equal true, CallbackController.was_called
   end
 end
