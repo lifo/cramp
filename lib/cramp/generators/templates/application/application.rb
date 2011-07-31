@@ -7,7 +7,8 @@ require 'cramp'
 require 'http_router'
 <% if active_record? %>require 'active_record'
 <% end %>
-Dir.glob['./app/**/*'].each {|f| require f}
+# Preload application classes
+Dir['./app/**/*.rb'].each {|f| require f}
 
 module <%= app_const_base %>
   class Application
