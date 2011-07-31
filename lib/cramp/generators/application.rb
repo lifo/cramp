@@ -53,8 +53,13 @@ module Cramp
         empty_directory "app/actions"
 
         inside "app/actions" do
-          template "base_action.rb"
           template "home_action.rb"
+        end
+      end
+
+      def create_models
+        if active_record?
+          empty_directory "app/models"
         end
       end
 

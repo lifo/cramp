@@ -7,8 +7,7 @@ require 'cramp'
 require 'http_router'
 <% if active_record? %>require 'active_record'
 <% end %>
-require './app/actions/base_action'
-require './app/actions/home_action'
+Dir.glob['./app/**/*'].each {|f| require f}
 
 module <%= app_const_base %>
   class Application
