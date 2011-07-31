@@ -1,5 +1,15 @@
 == 0.14 Asgard (Unreleased)
 
+* Add an option to the application generator for configuring async Active Record.
+
+  Example:
+
+    $ cramp new liveblog --with-active-record
+
+    or
+
+    $ cramp new liveblog -M
+
 * Barebone application generator using Thor.
 
   Example:

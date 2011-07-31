@@ -1,0 +1,6 @@
+development:
+  adapter: em_mysql2
+  database: <%= app_name %>_development
+  host: localhost
+  username: root
+  pool: 100

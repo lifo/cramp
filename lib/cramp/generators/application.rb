@@ -10,6 +10,7 @@ module Cramp
       include Thor::Actions
 
       argument :application_path, :type => :string
+      class_option :with_active_record, :type => :boolean, :aliases => "-M", :default => false, :desc => "Configures Active Record"
 
       def initialize(*args)
         raise Thor::Error, "No application name supplied. Please run: cramp --help" if args[0].blank?
@@ -44,6 +45,7 @@ module Cramp
 
         inside "config" do
           template "routes.rb"
+          template 'database.yml' if active_record?
         end
       end
 
@@ -57,6 +59,10 @@ module Cramp
       end
 
       protected
+
+      def active_record?
+        options[:with_active_record]
+      end
 
       def app_name
         @app_name ||= File.basename(destination_root)

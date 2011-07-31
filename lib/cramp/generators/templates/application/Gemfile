@@ -9,8 +9,13 @@ gem 'thin'
 gem 'http_router'
 
 # For async Active Record models
-# gem 'mysql2'
+<% if active_record? -%>
+gem 'mysql2', '~> 0.2.7'
+gem 'activerecord'
+<% else -%>
+# gem 'mysql2', '~> 0.2.7'
 # gem 'activerecord'
+<% end -%>
 
 # Using Fibers + async callbacks to emulate synchronous programming
 # gem 'em-synchrony'
