@@ -5,8 +5,8 @@ Bundler.setup(:default)
 
 require 'cramp'
 require 'http_router'
-<% if active_record? -%>require 'active_record'<% end %>
-
+<% if active_record? %>require 'active_record'
+<% end %>
 require './app/actions/base_action'
 require './app/actions/home_action'
 
