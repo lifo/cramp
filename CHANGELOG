@@ -1,3 +1,11 @@
+== 0.14 Asgard (Unreleased)
+
+* Barebone application generator using Thor.
+
+  Example:
+
+    $ cramp new liveblog
+
 == 0.13 Facelift (31 July, 2011)
 
 * Added use_fiber_pool for wrapping every on_start/on_finish/periodic_timer callbacks within a Fiber. Default fiber pool size is 100.

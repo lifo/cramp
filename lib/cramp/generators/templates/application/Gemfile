@@ -1,0 +1,16 @@
+source :rubygems
+
+gem 'cramp'
+
+# Async webserver for running a cramp application
+gem 'thin'
+
+# Rack based routing
+gem 'http_router'
+
+# For async Active Record models
+# gem 'mysql2'
+# gem 'activerecord'
+
+# Using Fibers + async callbacks to emulate synchronous programming
+# gem 'em-synchrony'

@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require 'cramp'
+require 'cramp/generators/application'
+
+if ['--version', '-v'].include?(ARGV.first)
+  puts "Cramp #{Cramp::VERSION}"
+  exit(0)
+end
+
+if ARGV.first != "new"
+  ARGV[0] = "--help"
+else
+  ARGV.shift
+end
+
+Cramp::Generators::Application.start
