@@ -19,3 +19,6 @@ gem 'activerecord'
 
 # Using Fibers + async callbacks to emulate synchronous programming
 # gem 'em-synchrony'
+
+# Generic interface to multiple Ruby template engines - https://github.com/rtomayko/tilt
+# gem 'tilt'
