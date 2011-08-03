@@ -10,10 +10,10 @@ gem 'http_router'
 
 # For async Active Record models
 <% if active_record? -%>
-gem 'mysql2', '~> 0.2.7'
+gem 'mysql2', '~> 0.2.11'
 gem 'activerecord'
 <% else -%>
-# gem 'mysql2', '~> 0.2.7'
+# gem 'mysql2', '~> 0.2.11'
 # gem 'activerecord'
 <% end -%>
 

@@ -10,7 +10,7 @@ end
 
 group :example do
   gem 'activerecord', '~> 3.0.9'
-  gem 'mysql2'
+  gem 'mysql2', '~> 0.2.11'
 
   gem 'em-http-request'
   gem 'em-synchrony'

@@ -9,9 +9,12 @@ Gem::Specification.new do |s|
   s.email = 'pratiknaik@gmail.com'
   s.homepage = 'http://m.onkey.org'
 
+  # Not in a very distant future
+  # s.required_ruby_version = '>=1.9.2'
+
   s.add_dependency('activesupport', '~> 3.0.9')
-  s.add_dependency('rack',          '~> 1.2.1')
-  s.add_dependency('eventmachine',  '~> 0.12.10')
+  s.add_dependency('rack',          '~> 1.2.2')
+  s.add_dependency('eventmachine',  '~> 1.0.0.beta.3')
   s.add_dependency('thor',          '~> 0.14.6')
 
   s.files = Dir['README', 'MIT-LICENSE', 'lib/**/*', 'bin/**/*']
