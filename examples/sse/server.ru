@@ -9,6 +9,7 @@ Bundler.setup(:default, :example)
 require 'cramp'
 require 'http_router'
 require 'active_support/json'
+require 'async_rack'
 
 class TimeController < Cramp::Action
   self.transport = :sse
@@ -31,4 +32,5 @@ end
 file_server = Rack::File.new(File.join(File.dirname(__FILE__), 'public'))
 
 # bundle exec thin -V -R examples/sse/server.ru start
+use AsyncRack::CommonLogger
 run Rack::Cascade.new([file_server, routes])

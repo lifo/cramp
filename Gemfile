@@ -22,4 +22,6 @@ group :example do
 
   gem 'http_router'
   gem 'erubis'
+
+  gem 'async-rack'
 end

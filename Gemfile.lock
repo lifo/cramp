@@ -22,6 +22,8 @@ GEM
     activesupport (3.0.9)
     addressable (2.2.6)
     arel (2.0.10)
+    async-rack (0.5.1)
+      rack (~> 1.1)
     builder (2.1.2)
     daemons (1.1.4)
     em-http-request (0.3.0)
@@ -64,6 +66,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord (~> 3.0.9)
+  async-rack
   cramp!
   em-http-request
   em-synchrony
