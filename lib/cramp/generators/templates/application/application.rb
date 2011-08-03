@@ -14,7 +14,7 @@ module <%= app_const_base %>
   class Application
 
     def self.env
-      @_env ||= defined?(RACK_ENV) ? RACK_ENV : 'development'
+      @_env ||= ENV['RACK_ENV'] || 'development'
     end
 
     def self.routes
