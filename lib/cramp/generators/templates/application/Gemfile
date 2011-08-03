@@ -8,7 +8,7 @@ gem 'thin'
 # Rack based routing
 gem 'http_router'
 
-# Collection of async-proof rack middlewares
+# Collection of async-proof rack middlewares - https://github.com/rkh/async-rack.git
 gem 'async-rack'
 
 # For async Active Record models
