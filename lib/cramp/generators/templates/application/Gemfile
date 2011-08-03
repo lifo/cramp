@@ -8,6 +8,9 @@ gem 'thin'
 # Rack based routing
 gem 'http_router'
 
+# Collection of async-proof rack middlewares
+gem 'async-rack'
+
 # For async Active Record models
 <% if active_record? -%>
 gem 'mysql2', '~> 0.2.11'
