@@ -20,15 +20,14 @@ module <%= app_const_base %>
     def self.routes
       @_routes ||= eval(File.read('./config/routes.rb'))
     end
-    <% if active_record? %>
-    def self.database_config
+
+    <% if active_record? %>def self.database_config
       @_database_config ||= YAML.load(File.read('./config/database.yml')).with_indifferent_access
     end
-    <% end -%>
 
-    # Initialize the application
-    def self.initialize!
-      <% if active_record? %>ActiveRecord::Base.configurations = <%= app_const %>.database_config
+    <% end %># Initialize the application
+    def self.initialize!<% if active_record? %>
+      ActiveRecord::Base.configurations = <%= app_const %>.database_config
       ActiveRecord::Base.establish_connection(<%= app_const %>.env)<% end %>
     end
 
