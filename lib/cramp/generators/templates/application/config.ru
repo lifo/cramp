@@ -5,6 +5,9 @@ require './application'
 if <%= app_const %>.env == 'development'
   require 'async-rack'
   use AsyncRack::CommonLogger
+
+  # Enable code reloading on every request
+  use Rack::Reloader, 0
 end
 
 # Running thin :
