@@ -51,9 +51,18 @@ module Cramp
       @body.call(result)
     end
 
+    def render_websocket(body, *)
+      data = ["\x00", body, "\xFF"].map(&method(:encode)) * ''
+      @body.call(data)
+    end
+
     # Used by SSE
     def sse_event_id
       @sse_event_id ||= Time.now.to_i
+    end
+
+    def encode(string, encoding = 'UTF-8')
+      string.respond_to?(:force_encoding) ? string.force_encoding(encoding) : string
     end
 
   end

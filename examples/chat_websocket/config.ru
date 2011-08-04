@@ -25,7 +25,9 @@ module ChatRamp
     end
   end
 
-  class SocketAction < Cramp::Websocket
+  class SocketAction < Cramp::Action
+    self.transport = :websocket
+
     @@users = Set.new
 
     on_start :user_connected

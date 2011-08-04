@@ -16,6 +16,8 @@ module Cramp
 
     def initialize(env)
       @env = env
+      @env['websocket.receive_callback'] = method(:_on_data_receive)
+
       @finished = false
     end
 
