@@ -1,15 +1,6 @@
 require "rubygems"
 require "bundler"
 
-Bundler.setup(:default)
-
-require 'cramp'
-require 'http_router'
-<% if active_record? %>require 'active_record'
-<% end %>
-# Preload application classes
-Dir['./app/**/*.rb'].each {|f| require f}
-
 module <%= app_const_base %>
   class Application
 
@@ -33,3 +24,8 @@ module <%= app_const_base %>
 
   end
 end
+
+Bundler.require(:default, <%= app_const %>.env)
+
+# Preload application classes
+Dir['./app/**/*.rb'].each {|f| require f}

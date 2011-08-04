@@ -3,11 +3,13 @@ require './application'
 
 # Development middlewares
 if <%= app_const %>.env == 'development'
-  require 'async-rack'
   use AsyncRack::CommonLogger
 
   # Enable code reloading on every request
   use Rack::Reloader, 0
+
+  # Serve assets from /public
+  use Rack::Static, :urls => ["/javascripts"], :root => File.expand_path("./public", __FILE__)
 end
 
 # Running thin :

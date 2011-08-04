@@ -25,3 +25,8 @@ gem 'activerecord'
 
 # Generic interface to multiple Ruby template engines - https://github.com/rtomayko/tilt
 # gem 'tilt'
+
+group :development do
+  # Development gems
+  # gem 'ruby-debug19'
+end

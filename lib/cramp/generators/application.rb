@@ -38,6 +38,9 @@ module Cramp
         template 'config.ru'
         template 'Gemfile'
         template 'application.rb'
+
+        empty_directory "public"
+        empty_directory "public/javascripts"
       end
 
       def create_config
