@@ -10,7 +10,7 @@ module Cramp
 
     class << self
       def call(env)
-        controller = new(env).process
+        new(env).process
       end
     end
 
