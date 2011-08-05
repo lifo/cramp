@@ -9,7 +9,7 @@ if <%= app_const %>.env == 'development'
   use Rack::Reloader, 0
 
   # Serve assets from /public
-  use Rack::Static, :urls => ["/javascripts"], :root => File.expand_path("./public", __FILE__)
+  use Rack::Static, :urls => ["/javascripts"], :root => <%= app_const %>.root(:public)
 end
 
 # Running thin :

@@ -4,6 +4,11 @@ require "bundler"
 module <%= app_const_base %>
   class Application
 
+    def self.root(path = nil)
+      @_root ||= File.expand_path(File.dirname(__FILE__))
+      path ? File.join(@_root, path.to_s) : @_root
+    end
+
     def self.env
       @_env ||= ENV['RACK_ENV'] || 'development'
     end
