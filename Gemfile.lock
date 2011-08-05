@@ -74,5 +74,5 @@ DEPENDENCIES
   http_router
   mysql2 (~> 0.2.11)
   rainbows
-  thin (~> 1.2.7)
+  thin (~> 1.2.11)
   yajl-ruby

@@ -16,7 +16,7 @@ group :example do
   gem 'em-synchrony'
 
   gem 'rainbows'
-  gem 'thin', '~> 1.2.7'
+  gem 'thin', '~> 1.2.11'
 
   gem 'yajl-ruby', :require => 'yajl'
 
