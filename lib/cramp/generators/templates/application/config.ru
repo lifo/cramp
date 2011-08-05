@@ -20,6 +20,6 @@ end
 #
 #   Very useful when you want to view all the data being sent/received by thin
 #
-#   bundle exec thin --max-persistent-conns 1024 --timeout 0 -R -V config.ru start
+#   bundle exec thin --max-persistent-conns 1024 --timeout 0 -V -R config.ru start
 #
 run <%= app_const %>.routes
