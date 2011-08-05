@@ -19,7 +19,7 @@ if RUBY_VERSION >= '1.9.1'
 end
   
 module Cramp
-  VERSION = '0.13'
+  VERSION = '0.14'
 
   mattr_accessor :logger
 
