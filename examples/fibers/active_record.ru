@@ -5,7 +5,7 @@ Bundler.setup(:default, :example)
 require 'cramp'
 require 'active_record'
 
-ActiveRecord::Base.establish_connection(:adapter => "em_mysql2", :username => 'root', :database => "arel_development")
+ActiveRecord::Base.establish_connection(:adapter => "em_mysql2", :username => 'root', :database => "arel_development", :pool => 100)
 
 class User < ActiveRecord::Base
   validates_presence_of :name
