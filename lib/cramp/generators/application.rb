@@ -1,6 +1,6 @@
 require 'thor/group'
 require 'active_support/core_ext/string/strip'
-require 'active_support/core_ext/string/inflections'
+require 'active_support/inflector/methods'
 require 'active_support/core_ext/object/blank'
 
 module Cramp
@@ -81,7 +81,7 @@ module Cramp
       end
 
       def app_const_base
-        @app_const_base ||= app_name.gsub(/\W/, '_').squeeze('_').camelize
+        @app_const_base ||= ActiveSupport::Inflector.camelize(app_name.gsub(/\W/, '_').squeeze('_'), true)
       end
 
       def valid_const?
