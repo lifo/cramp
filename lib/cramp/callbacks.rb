@@ -60,7 +60,7 @@ module Cramp
       data = data.split(/\000([^\377]*)\377/).select{|d| !d.empty? }.collect{|d| d.gsub(/^\x00|\xff$/, '') }
       self.class.on_data_callbacks.each do |callback|
         data.each do |message|
-          EM.next_tick { send(callback, message) }
+          callback_wrapper { send(callback, message) }
         end
       end
     end
