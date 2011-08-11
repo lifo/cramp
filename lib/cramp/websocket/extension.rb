@@ -27,17 +27,6 @@ module Cramp
       end
     end
 
-    class Protocol75 < WebSocketHandler
-      def handshake
-        upgrade =  "HTTP/1.1 101 Web Socket Protocol Handshake\r\n"
-        upgrade << "Upgrade: WebSocket\r\n"
-        upgrade << "Connection: Upgrade\r\n"
-        upgrade << "WebSocket-Origin: #{@env['HTTP_ORIGIN']}\r\n"
-        upgrade << "WebSocket-Location: #{@websocket_url}\r\n\r\n"
-        upgrade
-      end
-    end
-
     class Protocol76 < WebSocketHandler
       def handshake
         key1   = @env['HTTP_SEC_WEBSOCKET_KEY1']

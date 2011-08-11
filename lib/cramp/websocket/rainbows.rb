@@ -24,9 +24,7 @@ class Cramp::Websocket::Rainbows < Rainbows::EventMachine::Client
       @state = :websocket
       @input.rewind
 
-      handler = @env['HTTP_SEC_WEBSOCKET_KEY1'] &&
-                @env['HTTP_SEC_WEBSOCKET_KEY2'] ? Protocol76 : Protocol75
-      write(handler.new(@env, websocket_url, @buf).handshake)
+      write(Protocol76.new(@env, websocket_url, @buf).handshake)
       app_call NULL_IO
     else
       super
