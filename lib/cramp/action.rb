@@ -3,6 +3,11 @@ module Cramp
     include PeriodicTimer
     include KeepConnectionAlive
 
+    def initialize(env)
+      super
+      @env['websocket.receive_callback'] = method(:_on_data_receive)
+    end
+
     protected
 
     def render(body, *args)
@@ -52,7 +57,12 @@ module Cramp
     end
 
     def render_websocket(body, *)
-      data = ["\x00", body, "\xFF"].map(&method(:encode)) * ''
+      if websockets_protocol_10?
+        data = encode(protocol10_parser.send_text_frame(body), 'BINARY')
+      else
+        data = ["\x00", body, "\xFF"].map(&method(:encode)) * ''
+      end
+
       @body.call(data)
     end
 
@@ -63,6 +73,16 @@ module Cramp
 
     def encode(string, encoding = 'UTF-8')
       string.respond_to?(:force_encoding) ? string.force_encoding(encoding) : string
+    end
+
+    protected
+
+    def websockets_protocol_10?
+      [8, 9, 10].include?(@env['HTTP_SEC_WEBSOCKET_VERSION'].to_i)
+    end
+
+    def protocol10_parser
+      @protocol10_parser ||= Protocol10FrameParser.new
     end
 
   end

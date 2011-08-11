@@ -26,6 +26,7 @@ module Cramp
   autoload :Action, "cramp/action"
   autoload :Websocket, "cramp/websocket"
   autoload :WebsocketExtension, "cramp/websocket/extension"
+  autoload :Protocol10FrameParser, "cramp/websocket/protocol10_frame_parser"
   autoload :SSE, "cramp/sse"
   autoload :LongPolling, "cramp/long_polling"
   autoload :Body, "cramp/body"
