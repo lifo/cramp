@@ -24,7 +24,7 @@ class Cramp::Websocket::Rainbows < Rainbows::EventMachine::Client
       @state = :websocket
       @input.rewind
 
-      write(Protocol76.new(@env, websocket_url, @buf).handshake)
+      write(protocol_class.new(@env, websocket_url, @buf).handshake)
       app_call NULL_IO
     else
       super

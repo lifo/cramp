@@ -33,7 +33,7 @@ class Thin::Request
   include Cramp::WebsocketExtension
 
   def websocket_upgrade_data
-    Protocol76.new(@env, websocket_url, body.read).handshake
+    protocol_class.new(@env, websocket_url, body.read).handshake
   end
 
 end
