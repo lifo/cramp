@@ -1,35 +1,3 @@
-Check my blog entry "Introducing Cramp":http://m.onkey.org/2010/1/7/introducing-cramp for the details.
+Cramp is a fully asynchronous realtime web application framework in Ruby. It is built on top of EventMachine and primarily designed for working with larger number of open connections and providing full-duplex bi-directional communication.
 
-h2. Installation
-
-Cramp works with either thin or Rainbows!
-
-<pre>
-  gem install thin
-</pre>
-
-or:
-
-<pre>
-  gem install rainbows
-</pre>
-
-And then:
-
-<pre>
-  gem install cramp
-</pre>
-
-h2. Development
-
-First fork this project. Then:
-
-<pre>
-  gem install bundler (if you don't have it)
-  git clone git@github.com:[your-username]/cramp.git
-  cd cramp
-  bundle install
-  rake
-</pre>
-
-Make sure your changes include tests that cover those changes. Finally, submit a pull request.
+Please check out "http://cramp.in":http://cramp.in to find out more.
