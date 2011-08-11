@@ -46,7 +46,7 @@ GEM
       ruby_core_source (>= 0.1.4)
     mysql2 (0.2.11)
     rack (1.3.2)
-    rainbows (4.1.0)
+    rainbows (4.2.0)
       kgio (~> 2.5)
       rack (~> 1.1)
       unicorn (~> 4.0)
