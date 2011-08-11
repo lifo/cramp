@@ -24,4 +24,6 @@ group :example do
   gem 'erubis'
 
   gem 'async-rack'
+
+  gem 'ruby-debug19'
 end
