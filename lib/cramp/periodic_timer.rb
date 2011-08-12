@@ -47,6 +47,8 @@ module Cramp
 
     def timer_method_wrapper(method)
       send(method)
+    rescue StandardError, LoadError, SyntaxError => exception
+      handle_exception(exception)
     end
 
   end

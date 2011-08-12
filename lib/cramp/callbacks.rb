@@ -53,7 +53,13 @@ module Cramp
     end
 
     def callback_wrapper
-      EM.next_tick { yield }
+      EM.next_tick do
+        begin
+          yield
+        rescue StandardError, LoadError, SyntaxError => exception
+          handle_exception(exception)
+        end
+      end
     end
 
     def _on_data_receive(data)
@@ -79,6 +85,23 @@ module Cramp
     def _invoke_data_callbacks(message)
       self.class.on_data_callbacks.each do |callback|
         callback_wrapper { send(callback, message) }
+      end
+    end
+
+    def handle_exception(exception)
+      handler = ExceptionHandler.new(@env, exception)
+
+      # Log the exception
+      unless ENV['RACK_ENV'] == 'test'
+        exception_body = handler.dump_exception
+        Cramp.logger ? Cramp.logger.error(exception_body) : $stderr.puts(exception_body)
+      end
+
+      case @_state
+      when :init
+        halt 500, {"Content-Type" => 'text/html'}, ENV['RACK_ENV'] == 'development' ? handler.pretty : 'Something went wrong'
+      else
+        finish
       end
     end
 

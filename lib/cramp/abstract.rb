@@ -16,8 +16,9 @@ module Cramp
 
     def initialize(env)
       @env = env
-
       @finished = false
+
+      @_state = :init
     end
 
     def process
@@ -29,11 +30,17 @@ module Cramp
 
     def continue
       init_async_body
+      send_headers
 
+      @_state = :started
+      EM.next_tick { on_start }
+    end
+
+    def send_headers
       status, headers = respond_with
       send_initial_response(status, headers, @body)
-
-      EM.next_tick { on_start }
+    rescue StandardError, LoadError, SyntaxError => exception
+      handle_exception(exception)
     end
 
     def respond_with
@@ -54,8 +61,10 @@ module Cramp
     end
 
     def finish
+      @body.succeed if !finished? && @body && !@body.closed?
+    ensure
+      @_state = :finished
       @finished = true
-      @body.succeed
     end
 
     def send_initial_response(response_status, response_headers, response_body)
