@@ -14,19 +14,31 @@ module Cramp
       send(:"render_#{transport}", body, *args)
     end
 
-    def send_initial_response(*)
+    def send_initial_response(status, headers, body)
       case transport
       when :long_polling
-        # Dont send no initial response
+        # Dont send no initial response. Just cache it for later.
+        @_lp_status = status
+        @_lp_headers = headers
       else
         super
       end
     end
 
-    def respond_with
+    class_attribute :default_sse_headers
+    self.default_sse_headers = {'Content-Type' => 'text/event-stream', 'Cache-Control' => 'no-cache', 'Connection' => 'keep-alive'}
+
+    class_attribute :default_chunked_headers
+    self.default_chunked_headers = {'Transfer-Encoding' => 'chunked', 'Connection' => 'keep-alive'}
+
+    def build_headers
       case transport
       when :sse
-        [200, {'Content-Type' => 'text/event-stream', 'Cache-Control' => 'no-cache', 'Connection' => 'keep-alive'}]
+        status, headers = respond_to?(:respond_with, true) ? respond_with : [200, {'Content-Type' => 'text/html'}]
+        [status, headers.merge(self.default_sse_headers)]
+      when :chunked
+        status, headers = respond_to?(:respond_with, true) ? respond_with : [200, {}]
+        [status, headers.merge(self.default_chunked_headers)]
       else
         super
       end
@@ -37,10 +49,9 @@ module Cramp
     end
 
     def render_long_polling(data, *)
-      status, headers = respond_with
-      headers['Content-Length'] = data.size.to_s
+      @_lp_headers['Content-Length'] = data.size.to_s
 
-      send_response(status, headers, @body)
+      send_response(@_lp_status, @_lp_headers, @body)
       @body.call(data)
 
       finish
@@ -66,6 +77,15 @@ module Cramp
       @body.call(data)
     end
 
+    CHUNKED_TERM = "\r\n"
+    CHUNKED_TAIL = "0#{CHUNKED_TERM}#{CHUNKED_TERM}"
+
+    def render_chunked(body, *)
+      data = [Rack::Utils.bytesize(body).to_s(16), CHUNKED_TERM, body, CHUNKED_TERM].join
+
+      @body.call(data)
+    end
+
     # Used by SSE
     def sse_event_id
       @sse_event_id ||= Time.now.to_i
@@ -76,6 +96,15 @@ module Cramp
     end
 
     protected
+
+    def finish
+      case transport
+      when :chunked
+        @body.call(CHUNKED_TAIL) if is_finishable?
+      end
+
+      super
+    end
 
     def websockets_protocol_10?
       [8, 9, 10].include?(@env['HTTP_SEC_WEBSOCKET_VERSION'].to_i)

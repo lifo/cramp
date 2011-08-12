@@ -37,14 +37,14 @@ module Cramp
     end
 
     def send_headers
-      status, headers = respond_with
+      status, headers = build_headers
       send_initial_response(status, headers, @body)
     rescue StandardError, LoadError, SyntaxError => exception
       handle_exception(exception)
     end
 
-    def respond_with
-      [200, {'Content-Type' => 'text/html'}]
+    def build_headers
+      respond_to?(:respond_with, true) ? respond_with : [200, {'Content-Type' => 'text/html'}]
     end
 
     def init_async_body
@@ -61,7 +61,7 @@ module Cramp
     end
 
     def finish
-      @body.succeed if !finished? && @body && !@body.closed?
+      @body.succeed if is_finishable?
     ensure
       @_state = :finished
       @finished = true
@@ -90,5 +90,12 @@ module Cramp
     def route_params
       @env['router.params'] || @env['usher.params']
     end
+
+    private
+
+    def is_finishable?
+      !finished? && @body && !@body.closed?
+    end
+
   end
 end

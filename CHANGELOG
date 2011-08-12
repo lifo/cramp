@@ -1,5 +1,19 @@
 == 0.15 Crazy Apes (Unreleased)
 
+* Support for Chunked transfer encoding transport.
+
+  Example:
+
+  class ChunkedAction < Cramp::Action
+    self.transport = :chunked
+    on_start :send_data
+
+    def send_data
+      render "Chunk 1"
+      render "Chunk 2"
+    end
+  end
+
 == 0.14 Asgard (5 August, 2011)
 
 * Add an option to the application generator for configuring async Active Record.
