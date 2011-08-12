@@ -5,6 +5,7 @@ gemspec
 gem 'cramp', :path => File.dirname(__FILE__)
 
 group :test do
+  gem 'turn'
   gem 'http_router'
 end
 
