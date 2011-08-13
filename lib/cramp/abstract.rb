@@ -90,7 +90,7 @@ module Cramp
     end
 
     def route_params
-      @env['router.params'] || @env['usher.params']
+      @env['router.params'] || {}
     end
 
     private
