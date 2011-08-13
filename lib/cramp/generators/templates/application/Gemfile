@@ -14,10 +14,10 @@ gem 'async-rack'
 # For async Active Record models
 <% if active_record? -%>
 gem 'mysql2', '~> 0.2.11'
-gem 'activerecord'
+gem 'activerecord', :require => 'active_record'
 <% else -%>
 # gem 'mysql2', '~> 0.2.11'
-# gem 'activerecord'
+# gem 'activerecord', :require => 'active_record'
 <% end -%>
 
 # Using Fibers + async callbacks to emulate synchronous programming
