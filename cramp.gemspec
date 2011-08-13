@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
 
   s.author = 'Pratik Naik'
   s.email = 'pratiknaik@gmail.com'
-  s.homepage = 'http://m.onkey.org'
+  s.homepage = 'http://cramp.in'
 
   # Not in a very distant future
   # s.required_ruby_version = '>=1.9.2'
