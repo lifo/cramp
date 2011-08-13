@@ -38,6 +38,8 @@ module Cramp
         [status, headers.merge(self.default_sse_headers)]
       when :chunked
         status, headers = respond_to?(:respond_with, true) ? respond_with : [200, {}]
+        headers['Content-Type'] ||= 'text/html'
+
         [status, headers.merge(self.default_chunked_headers)]
       else
         super

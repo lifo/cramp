@@ -21,6 +21,7 @@ class ChunkedTransportTest < Cramp::TestCase
     get '/' do |status, headers, body|
       assert_equal 200, status
       assert_equal "chunked", headers["Transfer-Encoding"]
+      assert_equal "text/html", headers["Content-Type"]
       assert_kind_of Cramp::Body, body
 
       EM.stop

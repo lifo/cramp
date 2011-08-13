@@ -16,6 +16,8 @@ end
 
 module ChatRamp
   class HomeAction < Cramp::Action
+    self.transport = :chunked
+
     template_path = File.join(File.dirname(__FILE__), 'views/index.erb')
     @@template = Erubis::Eruby.new(File.read(template_path))
 
