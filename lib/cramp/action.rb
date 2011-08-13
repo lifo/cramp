@@ -39,6 +39,7 @@ module Cramp
       when :chunked
         status, headers = respond_to?(:respond_with, true) ? respond_with : [200, {}]
         headers['Content-Type'] ||= 'text/html'
+        headers['Cache-Control'] ||= 'no-cache'
 
         [status, headers.merge(self.default_chunked_headers)]
       else
