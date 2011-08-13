@@ -17,6 +17,7 @@ class BaseTest < Cramp::TestCase
     get '/' do |status, headers, body|
       assert_equal 200, status
       assert_equal "text/html", headers["Content-Type"]
+      assert_equal "keep-alive", headers["Connection"]
       assert_kind_of Cramp::Body, body
 
       stop

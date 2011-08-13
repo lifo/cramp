@@ -44,7 +44,9 @@ module Cramp
     end
 
     def build_headers
-      respond_to?(:respond_with, true) ? respond_with : [200, {'Content-Type' => 'text/html'}]
+      status, headers = respond_to?(:respond_with, true) ? respond_with : [200, {'Content-Type' => 'text/html'}]
+      headers['Connection'] ||= 'keep-alive'
+      [status, headers]
     end
 
     def init_async_body
