@@ -23,14 +23,14 @@ group :example do
   gem 'erubis'
 
   gem 'async-rack'
-end
 
-platforms :mri_19 do
-  gem 'rainbows'
-  gem "ruby-debug19", :require => "ruby-debug" unless RUBY_VERSION > "1.9.2"
-  gem 'em-synchrony'
-end
+  platforms :mri_19 do
+    gem 'rainbows'
+    gem "ruby-debug19", :require => "ruby-debug" unless RUBY_VERSION > "1.9.2"
+    gem 'em-synchrony'
+  end
 
-platforms :rbx do
-  # gem 'em-synchrony'
+  platforms :rbx do
+    # gem 'em-synchrony'
+  end
 end
