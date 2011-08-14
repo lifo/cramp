@@ -8,8 +8,8 @@ module Cramp
 
     module ClassMethods
       def use_fiber_pool(options = {})
-        if RUBY_VERSION < '1.9.1'
-          raise "Fibers are supported only for Rubies >= 1.9.1"
+        unless defined?(::FiberPool)
+          raise "Fiber support is only available for Rubies >= 1.9.2"
         end
 
         self.fiber_pool = ::FiberPool.new(options[:size] || 100)

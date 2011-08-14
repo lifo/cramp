@@ -15,8 +15,11 @@ require 'active_support/buffered_logger'
 
 require 'rack'
 
-if RUBY_VERSION >= '1.9.1'
+begin
+  require 'fiber'
   require File.join(File.dirname(__FILE__), 'vendor/fiber_pool')
+rescue LoadError
+  # No fibers available!
 end
   
 module Cramp
