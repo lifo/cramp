@@ -23,6 +23,7 @@ group :example do
   gem 'erubis'
 
   gem 'async-rack'
+  gem 'async_sinatra'
 
   platforms :mri_19 do
     gem 'rainbows'
