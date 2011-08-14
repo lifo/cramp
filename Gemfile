@@ -14,9 +14,7 @@ group :example do
   gem 'mysql2', '~> 0.2.11'
 
   gem 'em-http-request'
-  gem 'em-synchrony'
 
-  gem 'rainbows'
   gem 'thin', '~> 1.2.11'
 
   gem 'yajl-ruby', :require => 'yajl'
@@ -25,6 +23,14 @@ group :example do
   gem 'erubis'
 
   gem 'async-rack'
+end
 
-  gem 'ruby-debug19'
+platforms :mri_19 do
+  gem 'rainbows'
+  gem "ruby-debug19", :require => "ruby-debug" unless RUBY_VERSION > "1.9.2"
+  gem 'em-synchrony'
+end
+
+platforms :rbx do
+  # gem 'em-synchrony'
 end
