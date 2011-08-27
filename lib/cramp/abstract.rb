@@ -44,7 +44,7 @@ module Cramp
     end
 
     def build_headers
-      status, headers = respond_to?(:respond_with, true) ? respond_with : [200, {'Content-Type' => 'text/html'}]
+      status, headers = respond_to?(:respond_with, true) ? respond_with.dup : [200, {'Content-Type' => 'text/html'}]
       headers['Connection'] ||= 'keep-alive'
       [status, headers]
     end
