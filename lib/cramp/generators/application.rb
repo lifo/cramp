@@ -11,6 +11,7 @@ module Cramp
 
       argument :application_path, :type => :string
       class_option :with_active_record, :type => :boolean, :aliases => "-M", :default => false, :desc => "Configures Active Record"
+      class_option :with_mongoid, :type => :boolean, :aliases => '-O', :default => false, :description => 'Configured Mongoid'
 
       def initialize(*args)
         raise Thor::Error, "No application name supplied. Please run: cramp --help" if args[0].blank?
@@ -49,6 +50,7 @@ module Cramp
         inside "config" do
           template "routes.rb"
           template 'database.yml' if active_record?
+          template 'mongoid.yml' if mongoid?
         end
       end
 
@@ -61,7 +63,7 @@ module Cramp
       end
 
       def create_models
-        if active_record?
+        if active_record? || mongoid?
           empty_directory "app/models"
         end
       end
@@ -70,6 +72,10 @@ module Cramp
 
       def active_record?
         options[:with_active_record]
+      end
+
+      def mongoid?
+        options[:with_mongoid]
       end
 
       def app_name

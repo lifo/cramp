@@ -1,0 +1,21 @@
+defaults: &defaults
+  host: localhost
+  # slaves:
+  #   - host: slave1.local
+  #     port: 27018
+  #   - host: slave2.local
+  #     port: 27019
+
+development:
+  <<: *defaults
+  database: <%= app_name %>_development
+
+test:
+  <<: *defaults
+  database: <%= app_name %>_test
+
+# set these environment variables on your prod server
+production:
+  host: localhost
+  database: <%= app_name %>_production
+
