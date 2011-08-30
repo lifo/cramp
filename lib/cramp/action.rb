@@ -112,7 +112,7 @@ module Cramp
     end
 
     def websockets_protocol_10?
-      [8, 9, 10].include?(@env['HTTP_SEC_WEBSOCKET_VERSION'].to_i)
+      [7, 8, 9, 10].include?(@env['HTTP_SEC_WEBSOCKET_VERSION'].to_i)
     end
 
     def protocol10_parser
