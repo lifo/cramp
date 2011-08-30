@@ -10,7 +10,7 @@ module Cramp
     end
 
     def websocket?
-      @env['HTTP_CONNECTION'] == 'Upgrade' && ['WebSocket', 'websocket'].include?(@env['HTTP_UPGRADE'])
+      ['WebSocket', 'websocket'].include?(@env['HTTP_UPGRADE'])
     end
 
     def secure_websocket?
