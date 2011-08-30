@@ -23,7 +23,7 @@ rescue LoadError
 end
   
 module Cramp
-  VERSION = '0.15'
+  VERSION = '0.15.1'
 
   mattr_accessor :logger
 
