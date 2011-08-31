@@ -25,7 +25,11 @@ module <%= app_const_base %>
     def self.initialize!<% if active_record? %>
       ActiveRecord::Base.configurations = <%= app_const %>.database_config
       ActiveRecord::Base.establish_connection(<%= app_const %>.env)<% end %><% if mongoid? %>
-      Mongoid.load!(File.join(<%= app_const %>.root, 'config', 'mongoid.yml'))<% end %>
+      # Initialize Mongoid with the mongoid.yml once EventMachine has started.
+      EM::next_tick do
+        require 'em-mongo'
+        Mongoid.load!(File.join(<%= app_const %>.root, 'config', 'mongoid.yml'))
+      end<% end %>
     end
 
   end

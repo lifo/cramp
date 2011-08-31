@@ -11,7 +11,7 @@ module Cramp
 
       argument :application_path, :type => :string
       class_option :with_active_record, :type => :boolean, :aliases => "-M", :default => false, :desc => "Configures Active Record"
-      class_option :with_mongoid, :type => :boolean, :aliases => '-O', :default => false, :description => 'Configured Mongoid'
+      class_option :with_mongoid, :type => :boolean, :aliases => '-O', :default => false, :desc => 'Configures Mongoid'
 
       def initialize(*args)
         raise Thor::Error, "No application name supplied. Please run: cramp --help" if args[0].blank?
@@ -76,6 +76,10 @@ module Cramp
 
       def mongoid?
         options[:with_mongoid]
+      end
+
+      def ruby_19?
+        RUBY_VERSION.to_f >= 1.9
       end
 
       def app_name

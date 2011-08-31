@@ -41,4 +41,5 @@ module Cramp
   autoload :FiberPool, "cramp/fiber_pool"
   autoload :ExceptionHandler, "cramp/exception_handler"
   autoload :TestCase, "cramp/test_case"
+
 end
