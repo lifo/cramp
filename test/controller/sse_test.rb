@@ -9,6 +9,7 @@ class SseTest < Cramp::TestCase
     def go_sse
       render "Hello World"
       render "Nothing", :retry => 10
+      render "Hello non-message event type", :event => :different
       finish
     end
   end
@@ -28,7 +29,7 @@ class SseTest < Cramp::TestCase
   end
 
   def test_body
-    get_body_chunks '/', :count => 2 do |chunks|
+    get_body_chunks '/', :count => 3 do |chunks|
       # chunk1 = id: 1297999043\ndata: Hello World
       first_chunk = chunks[0].split("\n")
       assert first_chunk[0] =~ /\Aid: \d+\Z/, first_chunk.inspect
@@ -37,6 +38,10 @@ class SseTest < Cramp::TestCase
       second_chunk = chunks[1].split("\n")
       assert_equal "retry: 10", second_chunk[1]
       assert_equal "data: Nothing", second_chunk[2]
+      
+      third_chunk = chunks[2].split("\n")
+      assert_equal "event: different", third_chunk[1]
+      assert_equal "data: Hello non-message event type", third_chunk[2]
     end
   end
 
