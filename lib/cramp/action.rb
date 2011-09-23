@@ -64,6 +64,7 @@ module Cramp
 
     def render_sse(data, options = {})
       result = "id: #{sse_event_id}\n"
+      result << "event: #{options[:event]}\n" if options[:event]
       result << "retry: #{options[:retry]}\n" if options[:retry]
 
       data.split(/\n/).each {|d| result << "data: #{d}\n" }
