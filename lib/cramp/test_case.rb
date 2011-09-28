@@ -33,7 +33,14 @@ module Cramp
 
     def request_body(method, path, options = {}, headers = {}, &block)
       callback = options.delete(:callback) || block
-      response_callback = proc {|response| response[-1].each {|chunk| callback.call(chunk) } }
+      response_callback = proc do |response|
+        # 'halt' returns a String, not an async Body object
+        if response.last.is_a? String
+          callback.call(response.last)
+        else
+          response.last.each {|chunk| callback.call(chunk) }
+        end
+      end
       headers = headers.merge('async.callback' => response_callback)
 
       EM.run do
