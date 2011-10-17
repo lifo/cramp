@@ -78,7 +78,7 @@ module Cramp
     end
 
     def send_response(response_status, response_headers, response_body)
-      @env['async.callback'].call [response_status, response_headers, response_body]
+      @env['async.callback'].call [response_status, response_headers, [response_body]]
     end
 
     def request
