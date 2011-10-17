@@ -74,7 +74,7 @@ module Cramp
     end
 
     def halt(status, headers = {}, halt_body = '')
-      send_response(status, headers, halt_body)
+      send_response(status, headers, [halt_body])
     end
 
     def send_response(response_status, response_headers, response_body)
