@@ -92,10 +92,8 @@ module Cramp
       handler = ExceptionHandler.new(@env, exception)
 
       # Log the exception
-      unless ENV['RACK_ENV'] == 'test'
-        exception_body = handler.dump_exception
-        Cramp.logger ? Cramp.logger.error(exception_body) : $stderr.puts(exception_body)
-      end
+      exception_body = handler.dump_exception
+      Cramp.logger ? Cramp.logger.error(exception_body) : $stderr.puts(exception_body)
 
       case @_state
       when :init
