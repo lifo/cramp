@@ -62,25 +62,7 @@ module Cramp
       end
     end
 
-    def _on_data_receive(data)
-      websockets_protocol_10? ? _receive_protocol10_data(data) : _receive_protocol76_data(data)
-    end
-
     protected
-
-    def _receive_protocol10_data(data)
-      protocol10_parser.data << data
-
-      messages = @protocol10_parser.process_data
-      messages.each do |type, content|
-        _invoke_data_callbacks(content) if type == :text
-      end
-    end
-
-    def _receive_protocol76_data(data)
-      data = data.split(/\000([^\377]*)\377/).select{|d| !d.empty? }.collect{|d| d.gsub(/^\x00|\xff$/, '') }
-      data.each {|message| _invoke_data_callbacks(message) }
-    end
 
     def _invoke_data_callbacks(message)
       self.class.on_data_callbacks.each do |callback|
