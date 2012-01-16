@@ -5,7 +5,7 @@ module Cramp
     class << self
       def backend=(backend)
         raise "Websocket backend #{backend} is unknown" unless [:thin, :rainbows].include?(backend.to_sym)
-        require "cramp/websocket/#{backend}_backend.rb"
+        Faye::WebSocket.load_adapter(backend.to_s)
       end
     end
 
