@@ -14,6 +14,7 @@ require 'active_support/core_ext/hash/except'
 require 'active_support/buffered_logger'
 
 require 'rack'
+require 'faye/websocket'
 
 begin
   require 'fiber'

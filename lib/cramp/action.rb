@@ -5,7 +5,14 @@ module Cramp
 
     def initialize(env)
       super
-      @env['websocket.receive_callback'] = method(:_on_data_receive)
+      
+      if Faye::WebSocket.websocket?(env)
+        @web_socket = Faye::WebSocket.new(env)
+        @web_socket.onmessage = lambda do |event|
+          message = event.data
+          _invoke_data_callbacks(message) if message.is_a?(String)
+        end
+      end
     end
 
     protected
@@ -74,13 +81,7 @@ module Cramp
     end
 
     def render_websocket(body, *)
-      if websockets_protocol_10?
-        data = encode(protocol10_parser.send_text_frame(body), 'BINARY')
-      else
-        data = ["\x00", body, "\xFF"].map(&method(:encode)) * ''
-      end
-
-      @body.call(data)
+      @web_socket.send(body)
     end
 
     CHUNKED_TERM = "\r\n"
@@ -110,14 +111,6 @@ module Cramp
       end
 
       super
-    end
-
-    def websockets_protocol_10?
-      [7, 8, 9, 10].include?(@env['HTTP_SEC_WEBSOCKET_VERSION'].to_i)
-    end
-
-    def protocol10_parser
-      @protocol10_parser ||= Protocol10FrameParser.new
     end
 
   end
