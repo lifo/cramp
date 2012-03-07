@@ -4,7 +4,8 @@ module Cramp
     extend ActiveSupport::Concern
 
     included do
-      class_inheritable_accessor :periodic_timers, :instance_reader => false
+      # was class_inheritable_accessor
+      class_attribute :periodic_timers, :instance_reader => false
       self.periodic_timers ||= []
     end
 
