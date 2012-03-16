@@ -6,7 +6,16 @@ module Cramp
     def initialize(env)
       super
       
-      if Faye::WebSocket.websocket?(env)
+      case
+      when Faye::EventSource.eventsource?(env)
+        # request has Accept: text/event-stream
+        # faye server adapter intercepts headers - need to send them in send_initial_response or use faye's implementation
+        @eventsource_detected = true
+        unless transport == :sse
+          err = "WARNING: Cramp got request with EventSource header on action with transport #{transport} (not sse)! Response may not contain valid http headers!"
+          Cramp.logger ? Cramp.logger.error(err) : $stderr.puts(err)
+        end
+      when Faye::WebSocket.websocket?(env)
         @web_socket = Faye::WebSocket.new(env)
         @web_socket.onmessage = lambda do |event|
           message = event.data
@@ -27,13 +36,20 @@ module Cramp
         # Dont send no initial response. Just cache it for later.
         @_lp_status = status
         @_lp_headers = headers
+      when :sse
+        super
+        if @eventsource_detected
+          # Reconstruct headers that were killed by faye server adapter:
+          @body.call("HTTP/1.1 200 OK\r\n#{headers.map{|(k,v)| "#{k}: #{v.is_a?(Time) ? v.httpdate : v.to_s}"}.join("\r\n")}\r\n\r\n")
+        end
+        # send retry? @body.call("retry: #{ (@retry * 1000).floor }\r\n\r\n")
       else
         super
       end
     end
 
     class_attribute :default_sse_headers
-    self.default_sse_headers = {'Content-Type' => 'text/event-stream', 'Cache-Control' => 'no-cache', 'Connection' => 'keep-alive'}
+    self.default_sse_headers = {'Content-Type' => 'text/event-stream', 'Cache-Control' => 'no-cache, no-store', 'Connection' => 'keep-alive'}
 
     class_attribute :default_chunked_headers
     self.default_chunked_headers = {'Transfer-Encoding' => 'chunked', 'Connection' => 'keep-alive'}
@@ -70,6 +86,7 @@ module Cramp
     end
 
     def render_sse(data, options = {})
+      #TODO: Faye uses \r\n for newlines, some compatibility?
       result = "id: #{sse_event_id}\n"
       result << "event: #{options[:event]}\n" if options[:event]
       result << "retry: #{options[:retry]}\n" if options[:retry]
