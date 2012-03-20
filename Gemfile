@@ -4,6 +4,11 @@ gemspec
 
 gem 'cramp', :path => File.dirname(__FILE__)
 
+group :development do
+  gem 'rake'
+  gem 'minitest'
+end
+
 group :test do
   gem 'turn'
   gem 'http_router'
