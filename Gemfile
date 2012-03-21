@@ -15,7 +15,7 @@ group :test do
 end
 
 group :example do
-  gem 'activerecord', '~> 3.2.1'
+  gem 'activerecord'
   gem 'mysql2', '~> 0.2.11'
 
   gem 'em-http-request'
