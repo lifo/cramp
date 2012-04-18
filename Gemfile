@@ -4,13 +4,18 @@ gemspec
 
 gem 'cramp', :path => File.dirname(__FILE__)
 
+group :development do
+  gem 'rake'
+  gem 'minitest'
+end
+
 group :test do
   gem 'turn'
   gem 'http_router'
 end
 
 group :example do
-  gem 'activerecord', '~> 3.0.9'
+  gem 'activerecord'
   gem 'mysql2', '~> 0.2.11'
 
   gem 'em-http-request'
