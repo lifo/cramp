@@ -1,13 +1,17 @@
+# -*- encoding: utf-8 -*-
+$:.push File.expand_path("../lib", __FILE__)
+require "cramp/version"
+
 Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
-  s.name = 'cramp'
-  s.version = '0.15.3'
+  s.name = 'crampy'
+  s.version = Cramp::VERSION
   s.summary = 'Asynchronous web framework.'
-  s.description = 'Cramp is a framework for developing asynchronous web applications.'
+  s.description = 'Crampy is a fork of Cramp, a framework for developing asynchronous web applications.'
 
-  s.author = 'Pratik Naik'
-  s.email = 'pratiknaik@gmail.com'
-  s.homepage = 'http://cramp.in'
+  s.authors = ['Pratik Naik', 'Vasily Fedoseyev']
+  s.email = ['vasilyfedoseyev@gmail.com']
+  s.homepage = 'https://github.com/Vasfed/cramp'
 
   # Not in a very distant future
   # s.required_ruby_version = '>=1.9.2'

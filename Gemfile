@@ -2,7 +2,8 @@ source 'http://rubygems.org'
 
 gemspec
 
-gem 'cramp', :path => File.dirname(__FILE__)
+gem 'crampy', :path => File.dirname(__FILE__)
+
 
 group :test do
   gem 'turn'

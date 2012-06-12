@@ -1,4 +1,5 @@
 require 'eventmachine'
+# this shoud be called before reactor start, otherwise EM will silently ignore it
 EM.epoll
 
 require 'active_support'
@@ -24,7 +25,8 @@ rescue LoadError
 end
 
 module Cramp
-  VERSION = '0.15.1'
+  ROOT = File.expand_path(File.dirname(__FILE__))
+  require "#{Cramp::ROOT}/cramp/version"
 
   mattr_accessor :logger
 
