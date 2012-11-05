@@ -4,7 +4,7 @@ module Cramp
     extend ActiveSupport::Concern
 
     included do
-      class_inheritable_accessor :before_start_callbacks, :on_finish_callbacks, :on_start_callback, :on_data_callbacks, :instance_reader => false
+      class_attribute :before_start_callbacks, :on_finish_callbacks, :on_start_callback, :on_data_callbacks, :instance_reader => false
 
       self.before_start_callbacks = []
       self.on_finish_callbacks = []
