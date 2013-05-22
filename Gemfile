@@ -2,20 +2,22 @@ source 'http://rubygems.org'
 
 gemspec
 
-gem 'cramp', :path => File.dirname(__FILE__)
+gem 'crampy', :path => File.dirname(__FILE__)
+
 
 group :test do
   gem 'turn'
+  gem 'minitest', "~>4.7.3" # turn is not supported in 5+
   gem 'http_router'
 end
 
 group :example do
-  gem 'activerecord', '~> 3.0.9'
-  gem 'mysql2', '~> 0.2.11'
+  gem 'activerecord'
+  gem 'mysql2'
 
   gem 'em-http-request'
 
-  gem 'thin', '~> 1.2.11'
+  gem 'thin'
 
   gem 'yajl-ruby', :require => 'yajl'
 

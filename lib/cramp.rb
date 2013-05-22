@@ -1,9 +1,10 @@
 require 'eventmachine'
+# this shoud be called before reactor start, otherwise EM will silently ignore it
 EM.epoll
 
 require 'active_support'
 require 'active_support/core_ext/class/attribute'
-require 'active_support/core_ext/class/inheritable_attributes'
+#require 'active_support/core_ext/class/inheritable_attributes'
 require 'active_support/core_ext/class/attribute_accessors'
 require 'active_support/core_ext/module/aliasing'
 require 'active_support/core_ext/module/attribute_accessors'
@@ -22,9 +23,10 @@ begin
 rescue LoadError
   # No fibers available!
 end
-  
+
 module Cramp
-  VERSION = '0.15.1'
+  ROOT = File.expand_path(File.dirname(__FILE__))
+  require "#{Cramp::ROOT}/cramp/version"
 
   mattr_accessor :logger
 

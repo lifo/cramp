@@ -63,6 +63,7 @@ module Cramp
     end
 
     def finish
+      @_state = :finishing
       @body.succeed if is_finishable?
     ensure
       @_state = :finished
