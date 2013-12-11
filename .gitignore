@@ -1,3 +1,4 @@
 .bundle/*
 test/tests.log
 .rvmrc
+Gemfile.lock
