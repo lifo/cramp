@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
   s.name = 'cramp'
-  s.version = '0.15.1'
+  s.version = '0.15.2'
   s.summary = 'Asynchronous web framework.'
   s.description = 'Cramp is a framework for developing asynchronous web applications.'
 
