@@ -18,4 +18,4 @@ Manual installation:
 
 ## Usage
 
-Please check out "http://cramp.in":http://cramp.in to find out more.
+Please check out http://cramp.in to find out more.
