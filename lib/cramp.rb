@@ -21,24 +21,24 @@ begin
 rescue LoadError
   # No fibers available!
 end
-  
+
 module Cramp
-  VERSION = '0.15.1'
+  VERSION = '0.15.2'
 
   mattr_accessor :logger
 
-  autoload :Action, "cramp/action"
-  autoload :Websocket, "cramp/websocket"
-  autoload :WebsocketExtension, "cramp/websocket/extension"
-  autoload :Protocol10FrameParser, "cramp/websocket/protocol10_frame_parser"
-  autoload :SSE, "cramp/sse"
-  autoload :LongPolling, "cramp/long_polling"
-  autoload :Body, "cramp/body"
-  autoload :PeriodicTimer, "cramp/periodic_timer"
-  autoload :KeepConnectionAlive, "cramp/keep_connection_alive"
-  autoload :Abstract, "cramp/abstract"
-  autoload :Callbacks, "cramp/callbacks"
-  autoload :FiberPool, "cramp/fiber_pool"
-  autoload :ExceptionHandler, "cramp/exception_handler"
-  autoload :TestCase, "cramp/test_case"
+  autoload :Action, 'cramp/action'
+  autoload :Websocket, 'cramp/websocket'
+  autoload :WebsocketExtension, 'cramp/websocket/extension'
+  autoload :Protocol10FrameParser, 'cramp/websocket/protocol10_frame_parser'
+  autoload :SSE, 'cramp/sse'
+  autoload :LongPolling, 'cramp/long_polling'
+  autoload :Body, 'cramp/body'
+  autoload :PeriodicTimer, 'cramp/periodic_timer'
+  autoload :KeepConnectionAlive, 'cramp/keep_connection_alive'
+  autoload :Abstract, 'cramp/abstract'
+  autoload :Callbacks, 'cramp/callbacks'
+  autoload :FiberPool, 'cramp/fiber_pool'
+  autoload :ExceptionHandler, 'cramp/exception_handler'
+  autoload :TestCase, 'cramp/test_case'
 end
