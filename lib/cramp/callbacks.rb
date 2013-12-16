@@ -64,6 +64,20 @@ module Cramp
 
     protected
 
+    def _receive_protocol10_data(data)
+      protocol10_parser.data << data
+
+      messages = @protocol10_parser.process_data
+      messages.each do |type, content|
+        _invoke_data_callbacks(content) if type == :text
+      end
+    end
+
+    def _receive_protocol76_data(data)
+      data = data.split(Regexp.new('\000([^\377]*)\377')).select{|d| !d.empty? }.collect{|d| d.gsub(Regexp.new('^\x00|\xff$'), '') }
+      data.each {|message| _invoke_data_callbacks(message) }
+    end
+
     def _invoke_data_callbacks(message)
       self.class.on_data_callbacks.each do |callback|
         callback_wrapper { send(callback, message) }
@@ -74,10 +88,8 @@ module Cramp
       handler = ExceptionHandler.new(@env, exception)
 
       # Log the exception
-      unless ENV['RACK_ENV'] == 'test'
-        exception_body = handler.dump_exception
-        Cramp.logger ? Cramp.logger.error(exception_body) : $stderr.puts(exception_body)
-      end
+      exception_body = handler.dump_exception
+      Cramp.logger ? Cramp.logger.error(exception_body) : $stderr.puts(exception_body)
 
       case @_state
       when :init
