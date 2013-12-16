@@ -19,7 +19,7 @@ module Cramp
       @timers = []
     end
 
-    protected
+    private
 
     def continue
       super

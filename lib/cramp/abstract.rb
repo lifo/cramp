@@ -26,7 +26,7 @@ module Cramp
       throw :async
     end
 
-    protected
+    private
 
     def continue
       init_async_body
@@ -93,8 +93,6 @@ module Cramp
     def route_params
       @env['router.params'] || {}
     end
-
-    private
 
     def is_finishable?
       !finished? && @body && !@body.closed?

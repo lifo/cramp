@@ -5,7 +5,7 @@ module Cramp
 
     def initialize(env)
       super
-      
+
       case
       when Faye::EventSource.eventsource?(env)
         # request has Accept: text/event-stream
@@ -24,7 +24,7 @@ module Cramp
       end
     end
 
-    protected
+    private
 
     def render(body, *args)
       send(:"render_#{transport}", body, *args)
@@ -118,8 +118,6 @@ module Cramp
     def encode(string, encoding = 'UTF-8')
       string.respond_to?(:force_encoding) ? string.force_encoding(encoding) : string
     end
-
-    protected
 
     def finish
       case transport

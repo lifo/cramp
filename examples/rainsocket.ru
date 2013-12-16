@@ -24,5 +24,5 @@ class WelcomeController < Cramp::Websocket
   end
 end
 
-# rainbows -E deployment -c rainbows.conf hello_world.ru
+# rainbows -E deployment -c rainbows.conf rainsocket.ru
 run WelcomeController

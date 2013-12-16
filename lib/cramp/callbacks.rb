@@ -62,7 +62,7 @@ module Cramp
       end
     end
 
-    protected
+    private
 
     def _receive_protocol10_data(data)
       protocol10_parser.data << data
