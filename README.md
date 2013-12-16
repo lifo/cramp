@@ -1,4 +1,4 @@
-# Crampy
+# Cramp
 
 Cramp is a fully asynchronous realtime web application framework in Ruby. It is built on top of EventMachine and primarily designed for working with larger number of open connections and providing full-duplex bi-directional communication.
 
@@ -6,7 +6,7 @@ Cramp is a fully asynchronous realtime web application framework in Ruby. It is 
 
 Add this line to your application's Gemfile:
 
-    gem 'crampy'
+    gem 'cramp'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Manual installation:
 
-    $ gem install crampy
+    $ gem install cramp
 
 ## Usage
 
