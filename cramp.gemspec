@@ -8,6 +8,7 @@ Gem::Specification.new do |s|
   s.author = ['Pratik Naik', 'Lucas Allan Amorim']
   s.email = ['pratiknaik@gmail.com', 'lucas.allan@gmail.com']
   s.homepage = 'http://cramp.in'
+  s.license = 'MIT'
 
   s.add_dependency('activesupport',   '~> 3.2.16')
   s.add_dependency('rack',            '~> 1.5.2')
