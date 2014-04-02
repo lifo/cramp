@@ -14,11 +14,11 @@ module <%= app_const_base %>
     end
 
     def self.routes
-      @_routes ||= eval(File.read('./config/routes.rb'))
+      @_routes ||= eval(File.read(File.expand_path('../config/routes.rb', __FILE__)))
     end
 
     <% if active_record? %>def self.database_config
-      @_database_config ||= YAML.load(File.read('./config/database.yml')).with_indifferent_access
+      @_database_config ||= YAML.load_file(File.expand_path('../config/database.yml', __FILE__)).with_indifferent_access
     end
 
     <% end %># Initialize the application
@@ -33,4 +33,4 @@ end
 Bundler.require(:default, <%= app_const %>.env)
 
 # Preload application classes
-Dir['./app/**/*.rb'].each {|f| require f}
+Dir[File.join(File.dirname(__FILE__), 'app/**/*.rb')].each {| f| require f }
