@@ -48,7 +48,7 @@ class ExceptionHandlerTest < Cramp::TestCase
   def test_exception_in_before_start
     get '/before_start' do |status, headers, body|
       assert_equal 500, status
-      assert_equal 'Something went wrong', body
+      assert_equal ['Something went wrong'], body
 
       EM.stop
     end
@@ -72,7 +72,7 @@ class ExceptionHandlerTest < Cramp::TestCase
   def test_bad_respond_with
     get '/bad_respond_with' do |status, headers, body|
       assert_equal 500, status
-      assert_equal 'Something went wrong', body
+      assert_equal ['Something went wrong'], body
 
       EM.stop
     end

@@ -44,7 +44,7 @@ class CallbackTest < Cramp::TestCase
     get '/bad' do |status, headers, body|
       assert_equal 500, status
       assert_equal 'text/plain', headers['Content-Type']
-      assert_equal 'Invalid ID', body
+      assert_equal ['Invalid ID'], body
 
       EM.stop
     end
