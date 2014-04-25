@@ -1,4 +1,4 @@
-require './application'
+require File.expand_path('../application',  __FILE__)
 <%= app_const %>.initialize!
 
 # Development middlewares
