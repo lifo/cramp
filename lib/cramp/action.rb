@@ -21,6 +21,9 @@ module Cramp
           message = event.data
           _invoke_data_callbacks(message) if message.is_a?(String)
         end
+        @web_socket.onclose = lambda do |event|
+          finish
+        end
       end
     end
 
