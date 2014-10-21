@@ -21,6 +21,9 @@ module Cramp
           message = event.data
           _invoke_data_callbacks(message) if message.is_a?(String)
         end
+        @web_socket.onclose = lambda do |event|
+          finish
+        end
       end
     end
 
@@ -32,6 +35,8 @@ module Cramp
 
     def send_initial_response(status, headers, body)
       case transport
+      when :websocket
+        # Faye handles this response.  We don't have to do anything
       when :long_polling
         # Dont send no initial response. Just cache it for later.
         @_lp_status = status
