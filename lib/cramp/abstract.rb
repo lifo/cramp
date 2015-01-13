@@ -5,6 +5,8 @@ module Cramp
     include Callbacks
     include FiberPool
 
+    AsyncResponse = [-1, {}, []].freeze
+
     class_attribute :transport
     self.transport = :regular
 
@@ -23,7 +25,7 @@ module Cramp
 
     def process
       EM.next_tick { before_start }
-      throw :async
+      AsyncResponse
     end
 
     private
