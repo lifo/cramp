@@ -1,14 +1,17 @@
 require "rubygems"
 require "bundler"
 
+gem 'minitest'
+require "minitest/autorun"
+
 Bundler.setup
 Bundler.require :default, :test
 
 require 'cramp'
-require 'test/unit'
 require 'http_router'
+ActiveSupport.test_order = :sorted
 
-require 'active_support/buffered_logger'
-logger = ActiveSupport::BufferedLogger.new(File.join(File.dirname(__FILE__), "tests.log"))
-logger.level = ActiveSupport::BufferedLogger::DEBUG
+require 'logger'
+logger = Logger.new(File.join(File.dirname(__FILE__), "tests.log"))
+logger.level = Logger::DEBUG
 Cramp.logger = logger

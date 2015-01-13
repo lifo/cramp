@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gemspec
 
 group :test do
-  gem 'turn'
+  gem 'rake'
   gem 'http_router'
 end
 

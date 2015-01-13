@@ -25,7 +25,6 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.6)
-    ansi (1.4.3)
     arel (6.0.0)
     async-rack (0.5.1)
       rack (~> 1.1)
@@ -67,6 +66,7 @@ GEM
       rack (~> 1.1)
       unicorn (~> 4.8)
     raindrops (0.13.0)
+    rake (10.1.0)
     sinatra (1.4.5)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -78,8 +78,6 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
-    turn (0.9.6)
-      ansi
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     unicorn (4.8.3)
@@ -107,6 +105,6 @@ DEPENDENCIES
   http_router
   mysql2 (~> 0.2.11)
   rainbows
+  rake
   thin (~> 1.2.11)
-  turn
   yajl-ruby
