@@ -21,7 +21,7 @@ module Cramp
       headers = headers.merge('async.callback' => callback)
 
       EM.run do
-        catch(:async) { @request.request(method, path, headers) }
+        @request.request(method, path, headers)
       end
     end
 
@@ -33,18 +33,20 @@ module Cramp
 
     def request_body(method, path, options = {}, headers = {}, &block)
       callback = options.delete(:callback) || block
+
       response_callback = proc do |response|
         # 'halt' returns a String, not an async Body object
-        if response.last.is_a? String
-          callback.call(response.last)
+        if response.respond_to?(:last)
+          response.last.is_a?(String) ? callback.call(response.last) : response.last.each {|chunk| callback.call(chunk) }
         else
-          response.last.each {|chunk| callback.call(chunk) }
+          callback.call(response)
         end
       end
-      headers = headers.merge('async.callback' => response_callback)
+
+      headers = headers.merge('async.callback' => response_callback, 'stream.send' => response_callback)
 
       EM.run do
-        catch(:async) { @request.request(method, path, headers) }
+        @request.request(method, path, headers)
       end
     end
 

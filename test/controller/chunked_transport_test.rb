@@ -2,8 +2,7 @@ require 'test_helper'
 
 class ChunkedTransportTest < Cramp::TestCase
 
-  class ChunkedAction < Cramp::Action
-    self.transport = :chunked
+  class ChunkedAction < Cramp::Chunked
     on_start :send_chunks
 
     def send_chunks

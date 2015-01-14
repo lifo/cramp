@@ -28,7 +28,7 @@ module Cramp
       AsyncResponse
     end
 
-    private
+    protected
 
     def continue
       init_async_body

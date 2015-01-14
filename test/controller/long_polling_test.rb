@@ -2,9 +2,7 @@ require 'test_helper'
 
 class LongPollingTest < Cramp::TestCase
 
-  class PollController < Cramp::Action
-    self.transport = :long_polling
-
+  class PollController < Cramp::LongPolling
     on_start :foot_long_pole
     on_finish :poll_done
 

@@ -66,7 +66,7 @@ module Cramp
         end
       end
 
-      private
+      protected
 
       def active_record?
         options[:with_active_record]

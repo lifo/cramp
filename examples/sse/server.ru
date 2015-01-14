@@ -11,9 +11,7 @@ require 'http_router'
 require 'active_support/json'
 require 'async_rack'
 
-class TimeController < Cramp::Action
-  self.transport = :sse
-
+class TimeController < Cramp::SSE
   on_start :send_latest_time
   periodic_timer :send_latest_time, :every => 2
 

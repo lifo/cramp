@@ -19,7 +19,7 @@ class Fiber
     local_fiber_variables[key] = value
   end
   
-  private
+  protected
   
   def local_fiber_variables
     @local_fiber_variables ||= {}

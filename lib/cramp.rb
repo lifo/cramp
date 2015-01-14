@@ -32,6 +32,7 @@ module Cramp
   autoload :Protocol10FrameParser, 'cramp/websocket/protocol10_frame_parser'
   autoload :SSE, 'cramp/sse'
   autoload :LongPolling, 'cramp/long_polling'
+  autoload :Chunked, 'cramp/chunked'
   autoload :Body, 'cramp/body'
   autoload :PeriodicTimer, 'cramp/periodic_timer'
   autoload :KeepConnectionAlive, 'cramp/keep_connection_alive'

@@ -62,7 +62,7 @@ module Cramp
       end
     end
 
-    private
+    protected
 
     def _invoke_data_callbacks(message)
       self.class.on_data_callbacks.each do |callback|
